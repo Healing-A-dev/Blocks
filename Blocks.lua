@@ -2,7 +2,7 @@ Blocks = {}
 local function Build(file,ext)
     local ext = ext or ".lua"
     if file ~= nil and file:find("%..+") then ext = "" end
-    FileName = file..ext
+    local FileName = file..ext
     local File = io.open(FileName,"r")
     local lines = File:lines()
     local filelines = {}
