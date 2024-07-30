@@ -1,0 +1,7 @@
+require("Blocks")
+Blocks.BuildFromFile("Testfile.lua")
+Blocks.Locales.run()
+Blocks.EncodeLocale.run()
+local Language = getLocale()
+os.execute('clear')
+print(toEncode(Language))
