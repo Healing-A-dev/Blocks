@@ -19,19 +19,20 @@ startBlock Locales:
             s = s + 1
             print(tostring(s)..". ".._.." ("..i..")")
         end
-        io.write("\n\n\nEnter the or language code: ")
+        io.write("\n\n\nEnter the language shorthand: ")
         local language = io.read()
         if locales[language] == nil then
             os.execute('clear')
             print("Invalid Option")
-            os.execute('sleep 3 && clear')
+            os.execute('sleep 1 && clear')
             goto restart
         end
+        os.execute('clear')
         return locales[language]
     end
 endBlock
 
-startBlock EncodeLocale:
+startBlock EncodeString:
 
     function toEncode(words)
         local splitStr = {}

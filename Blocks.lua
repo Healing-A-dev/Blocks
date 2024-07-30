@@ -67,8 +67,15 @@ local function Build(file,ext)
                 File:close()
             end
 
-            Blocks[name].build = function(path)
+            Blocks[name].build = function(ext,path)
                 local path = path or ""
+                local ext = ext or ".lua"
+                if not ext:find("%.") and ext:find(".+") then
+                    path = ext
+                    ext = ".lua"
+                elseif ext == "" then
+                    ext = ".lua"
+                end
                 if path ~= "" and not io.open(path) then
                     path = path.."/"
                     local toMake = ""
@@ -81,7 +88,7 @@ local function Build(file,ext)
                 for _,i in ipairs(Blocks[name]) do
                     toRun[#toRun+1] = i
                 end
-                local BlockFile = io.open(path..name..".lua","w+")
+                local BlockFile = io.open(path..name..ext,"w+")
                 BlockFile:write("local "..name.." = {}\n\n"..table.concat(toRun,"\n").."\n\nreturn "..name)
                 BlockFile:close()
                 return path..name
