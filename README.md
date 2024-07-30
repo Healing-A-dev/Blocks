@@ -71,6 +71,17 @@ endBlock
 
 Blocks.TestBlock.run() -- This will run the block as well, even though it's in the same file as the block.
 ```
+### You can even run blocks fomr inside other blocks:
+```lua
+startBlock Block1:
+    print("Running Block 1")
+endBlock
+
+startBlock Block2:
+    print("Running Block 2")
+    Blocks.Block1.run() -- Prints "Running Block 1"
+endBlock
+```
 ---
 And that's the basic use of using Blocks...HOWEVER, there is more (but simple) utility. Not only to Blocks as a whole, but to each indivdual blocks as well.
 

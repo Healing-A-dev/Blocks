@@ -1,8 +1,6 @@
 Blocks = {}
-local function Build(file,ext)
-    local ext = ext or ".lua"
-    if file ~= nil and file:find("%..+") then ext = "" end
-    local FileName = file..ext
+local function Build(file)
+    local FileName = file
     local File = io.open(FileName,"r")
     local lines = File:lines()
     local filelines = {}
@@ -127,13 +125,14 @@ end
 
 function Blocks.BuildFromFile(file,ext)
     local ext = ext or ".lua"
+    local toBuild = ""
     if arg[1] == nil and file == nil then
         print("Blocks <Error>: "..arg[0]..": No file specified")
         os.exit()
     end
     if file ~= nil and file:find("%..+") then ext = "" end
-    if arg[1] == nil then arg[1] = file..ext end
-    local Blocks = Build(arg[1])
+    if arg[1] == nil then toBuild = file..ext else toBuild = arg[1] end
+    local Blocks = Build(toBuild)
     Blocks.Run()
     return {Lines = Blocks.Lines}
 end
