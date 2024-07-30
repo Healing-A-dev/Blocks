@@ -1,10 +1,6 @@
 Blocks = {}
 local function Build(file,ext)
     local ext = ext or ".lua"
-    if file == nil then
-        print("Blocks: "..arg[0]..":buildBlocks <Error>: No file specified")
-        os.exit()
-    end
     if file ~= nil and file:find("%..+") then ext = "" end
     FileName = file..ext
     local File = io.open(FileName,"r")
@@ -73,12 +69,20 @@ local function Build(file,ext)
 
             Blocks[name].build = function(path)
                 local path = path or ""
+                if path ~= "" and not io.open(path) then
+                    path = path.."/"
+                    local toMake = ""
+                    for pathName in path:gmatch("%w+") do
+                        os.execute("mkdir "..toMake..pathName)
+                        toMake = toMake..pathName.."/"
+                    end
+                end
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
                     toRun[#toRun+1] = i
                 end
                 local BlockFile = io.open(path..name..".lua","w+")
-                BlockFile:write("local "..name.." = {}\n\n"..table.concat(toRun,"\n").."\n\nreturn "..blockName)
+                BlockFile:write("local "..name.." = {}\n\n"..table.concat(toRun,"\n").."\n\nreturn "..name)
                 BlockFile:close()
                 return path..name
             end
@@ -117,7 +121,7 @@ end
 function Blocks.BuildFromFile(file,ext)
     local ext = ext or ".lua"
     if arg[1] == nil and file == nil then
-        print("Blocks: "..arg[0]..":buildBlocks <Error>: No file specified")
+        print("Blocks <Error>: "..arg[0]..": No file specified")
         os.exit()
     end
     if file ~= nil and file:find("%..+") then ext = "" end

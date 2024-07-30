@@ -47,4 +47,20 @@ startBlock EncodeLocale:
 
 endBlock
 
-toEncode()
+startBlock __GAME:
+    Game = {}
+    Game.Start = function()
+        os.execute('clear')
+        print("WORKING ON ITTTTT")
+    end
+    Game.Welcome = function()
+        print("Welcome "..Player_Name..", we have been waiting for you...\n\n\nConsole: Press 'Enter' To Continue")
+        io.read()
+        os.execute('sleep 2 && clear')
+        print("<-----------|"..Quest_Name.."|----------->\n\n\nConsole: Enemy Levels Are Equal To Player Age In This Region. | Age: "..Player_Age.." |")
+        os.execute('sleep 2')
+        print("\n\n\nConsole: Press 'Enter' To Start")
+        io.read()
+        Game.Start()
+    end
+endBlock

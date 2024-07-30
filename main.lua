@@ -1,7 +1,4 @@
 require("Blocks")
-Blocks.BuildFromFile("Testfile.lua")
-Blocks.Locales.run()
-Blocks.EncodeLocale.run()
-local Language = getLocale()
-os.execute('clear')
-print(toEncode(Language))
+Blocks.BuildFromFile("Testfile.lua") --Builds the blocks to be used
+
+require(Blocks.__GAME.build("home/usr/blocks")) -- Importing the '__GAME' Block Block File
