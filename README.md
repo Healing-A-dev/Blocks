@@ -5,7 +5,6 @@
 Blocks is a program written in lua that will allow you to create "files" within a file. No more having to search through tons of folders and files to find which file you were trying to import 30 minutes ago. With Blocks, there is no longer a need to hunt for files. Just make one file and have Blocks do the rest!
 
 ## How To Use Blocks:
-
 To use Blocks, first import Blocks into your main file.
 
 ```lua
@@ -115,6 +114,16 @@ require(File_Name) -- Imports the file
 or
 ```lua
 require(Blocks.TestBlock.build(<OPTIONAL_EXTENSION>,<OPTIONAL_EXPORT_PATH>))
+```
+### PLEASE DO NOT TRY AND IMPORT OR EXECUTE A FILE CONTAINING BLOCKS! IT IS NOT GOING TO WORK!
+```lua
+require("Test")
+dofile("Test.lua")
+lua Test.lua -- Command Line Prompt
+
+-- DO NOT RUN OR IMPORT ANY FILE CONTANING BLOCKS IN ANY OF THE WAYS LISTED ABOVE!!! (aka. AT ALL!!!)
+
+-- IT WILL NOT WORK BECAUSE OF THE SYNTAXING FOR BLOCKS. AND PLUS, THE FILE IS RAN AUTOMATICALLY WHEN YOU BUILD THE BLOCKS FROM THAT FILE ANYWAY. SO THERE IS NO NEED OR REASON TO IMPORT IT OR RUN IT INDEPENDENTLY.
 ```
 
 ## EXTRA INFOMATION:
