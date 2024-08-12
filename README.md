@@ -4,7 +4,8 @@
 
 Blocks is a program written in lua that will allow you to create "files" within a file. No more having to search through tons of folders and files to find which file you were trying to import 30 minutes ago. With Blocks, there is no longer a need to hunt for files. Just make one file and have Blocks do the rest!
 
-## How To Use Blocks:
+
+# How To Use Blocks:
 To use Blocks, first import Blocks into your main file.
 
 ```lua
@@ -31,6 +32,15 @@ lua <FILE_NAME_WITH_EXTENSION> <FILE_TO_BUILD>
 
 File_Lines = Blocks.BuildFromFile("Test.lua").Lines -- Array of lines
 ```
+
+ALTERNATIVLY, you use the Blocks.NewBLock function. This will create a new EMPTY block:
+
+```lua
+Blocks.NewBlock(<BLOCK_NAME>,{extensions = <EXTENTIONS>}, <RUN_TO_RUN_IN>, <SKIP_NIL_EXTENSIONS>)
+
+-- (Please see the example/main.lua file for more info)
+```
+
 Now, if you were just copying and pasting, you'll notice that it doesn't work. And that is because you havent made any blocks. To create a block, use the startBlock keyword followed by the name of your block. Inside the block, you can do whatever as long as its written in Lua (for now). When you've finished your block, use the endBlock keyword to close it. 
 
 ### Below is and example of what a block should look like:
@@ -92,7 +102,7 @@ Blocks.ShowAllBlocks() -- Displays all created blocks
 Blocks.<BLOCK_NAME>.build(<OPTIONAL_EXTENSION>,<OPTIONAL_EXPORT_PATH>) -- Will create a file named after the block's name, export said block into that file, and return the name of that file
 ```
 
-### Usuage cases of the .build function:
+## Usuage cases of the .build function:
 This following is for those of you who for some reason still want to create a block file even though the point of Blocks is to eliminate extra files... 
 
 ```lua
