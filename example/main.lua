@@ -27,11 +27,9 @@ Blocks.NewBlock("MegaBlock", {extensions = "__GAME Locales EncodeString WontWork
     
     The first argument "MegaBlock" is going to be the name of the new EMPTY block that will be created
 
-    The second argument "{extensions = "__GAME Locales EncodeString WontWork"} will attempt to add each block into the newly created block "MegaBlock" and will error if a block does not exist unless the 4th arugment* is set to true (IF YOU DO NOT WANT TO ADD EXTENSIONS, SET EXTENSIONS EQUAL TO ".VOID")
+    The second argument "{extensions = "__GAME Locales EncodeString WontWork"} will attempt to add each block into the newly created block "MegaBlock" and will error if a block does not exist unless the 3rd arugment* is set to true (IF YOU DO NOT WANT TO ADD EXTENSIONS, SET EXTENSIONS EQUAL TO ".VOID")
 
-    The third arguemnt "example/Test.lua" is the file in which the block will run in whenever the run function (in this case "Blocks.MegaBlock.run()") is called. If there is no file extesion found in the file name, it will create a .bkf file (Which will be removed after execution) to run safely without ruining that file.
-
-    The forth arguemnt will determine whether or not nil blocks will error when trying to add them as extensions
+    The third argument will determine whether or not nil blocks will error when trying to add them as extensions
 ]]
 
 Blocks.WriteToBlock("MegaBlock",[[ 
