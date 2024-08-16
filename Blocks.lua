@@ -1,8 +1,7 @@
 Blocks = {}
 local function partialBuild(name,file)
     Blocks[name] = {}
-    if not file:find("%..+") then file = file..".bkf" end
-    Blocks[name].runFile = file
+    Blocks[name].runFile = arg[0]
     Blocks[name].run = function()
         local runFileLines = {}
         local blockLines = {}
@@ -210,8 +209,8 @@ local function Build(file)
 end
 
 -- Block Utility Functions
-function Blocks.NewBlock(BlockName,extension,runFile,skip_nil_blocks)
-    partialBuild(BlockName,runFile)
+function Blocks.NewBlock(BlockName,extension,skip_nil_blocks)
+    partialBuild(BlockName)
     -- ADDING BLOCK EXTENSIONS --
     for ext in extension.extensions:gmatch("%S+") do
         if Blocks[ext] == nil and not skip_nil_blocks then

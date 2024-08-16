@@ -21,7 +21,7 @@ Blocks.BuildFromFile("example/Test.lua") --Builds the blocks to be used
 
 
 -- Usage of the Blocks.NewBlock Function
-Blocks.NewBlock("MegaBlock", {extensions = "__GAME Locales EncodeString WontWork"}, "example/Test", true)
+Blocks.NewBlock("MegaBlock", {extensions = "__GAME Locales EncodeString WontWork"}, true)
 
 --[[    THIS IS A BREAK DOWN OF THE "Blocks.NewBlock" FUNCTION:
     
@@ -38,12 +38,11 @@ Blocks.WriteToBlock("MegaBlock",[[
     print("Hello, World!") 
 ]]) -- Writes 'print("Hello, World!")' to the MegaBlock block. (Also yes, this function works. So calm down.)
 
--- Blocks.MegaBlock.run() -- Runs the MegaBlock block
+Blocks.MegaBlock.run() -- Runs the MegaBlock block
 -- Blocks.MegaBlock.build() -- Runs the MegaBlock block
 -- Blocks.MegaBlock.contents() -- Shows the contents of the MegaBlock block
 
 -- Blocks.MegaBlock.Locales.run() -- Runs the Locales extension block
 -- Blocks.MegaBlock.__GAME.rund() -- Runs the __GAME extension block
 -- Blocks.MegaBlock.EncodeString.run() -- Runs the EncodeString extension block
-
-Blocks.ShowAllBlocks() -- Displays all created blocks
+-- Blocks.ShowAllBlocks() -- Displays all created blocks
