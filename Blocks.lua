@@ -1,7 +1,8 @@
 Blocks = {}
 local function partialBuild(name,file)
     Blocks[name] = {}
-    Blocks[name].runFile = arg[0]
+    if not file:find("%..+") then file = file..".bkf" end
+    Blocks[name].runFile = file
     Blocks[name].run = function()
         local runFileLines = {}
         local blockLines = {}
@@ -158,14 +159,20 @@ local function Build(file)
                 if path ~= "" and not io.open(path) then
                     path = path.."/"
                     local toMake = ""
-                    for pathName in path:gmatch("%w+") do
-                        os.execute("mkdir "..toMake..pathName)
+                    for pathName in path:gmatch("[^%/]+") do
+                        os.execute("mkdir '"..toMake..pathName.."'")
                         toMake = toMake..pathName.."/"
                     end
                 end
                 local toRun = {}
-                for _,i in ipairs(Blocks[name]) do
-                    toRun[#toRun+1] = i
+                if Blocks[name] ~= nil then
+                    for _,i in ipairs(Blocks[name]) do
+                        toRun[#toRun+1] = i
+                    end
+                else
+                    for _,i in ipairs(holdBlocks[name]) do -- Edit this if you renameed the Blocks table
+                        toRun[#toRun+1] = i
+                    end
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
                 BlockFile:write("local "..name.." = {}\n\n"..table.concat(toRun,"\n").."\n\nreturn "..name)
@@ -200,7 +207,9 @@ local function Build(file)
             local File = io.open(FileName,"w+")
             File:write(table.concat(filelines,"\n"))
             File:close()
-            dofile(FileName)
+            if FileName:find("%.lua$") then
+                dofile(FileName)
+            end
             local File = io.open(FileName,"w+")
             File:write(table.concat(fileStore,"\n"))
             File:close()
@@ -209,8 +218,8 @@ local function Build(file)
 end
 
 -- Block Utility Functions
-function Blocks.NewBlock(BlockName,extension,skip_nil_blocks)
-    partialBuild(BlockName)
+function Blocks.NewBlock(BlockName,extension,runFile,skip_nil_blocks)
+    partialBuild(BlockName,runFile)
     -- ADDING BLOCK EXTENSIONS --
     for ext in extension.extensions:gmatch("%S+") do
         if Blocks[ext] == nil and not skip_nil_blocks then
@@ -237,15 +246,25 @@ function Blocks.WriteToBlock(BlockName, Data_To_Write)
     end
 end
 
-function Blocks.ShowAllBlocks()
-    for _,i in pairs(Blocks) do
-        if type(i) == "table" then
-            print("Block: ".._)
+function Blocks.ShowAllBlocks(command)
+    local madeBlocks = {}
+    if command ~= "-s" then
+        for _,i in pairs(Blocks) do
+            if type(i) == "table" then
+                print("Block: ".._)
+            end
         end
+    else
+        for _,i in pairs(Blocks) do
+            if type(i) == "table" and madeBlocks[_] == nil then
+                madeBlocks[_] = i
+            end
+        end
+        return madeBlocks
     end
 end
 
-function Blocks.BuildFromFile(file,ext)
+function Blocks.BuildFromFile(file,ext,isCommandLine)
     local ext = ext or ".lua"
     local toBuild = ""
     if arg[1] == nil and file == nil then
@@ -253,8 +272,10 @@ function Blocks.BuildFromFile(file,ext)
         os.exit()
     end
     if file ~= nil and file:find("%..+") then ext = "" end
-    if arg[1] == nil then toBuild = file..ext else toBuild = arg[1] end
+    if arg[1] == nil or arg[1] == "-e" or isCommandLine then toBuild = file..ext else toBuild = arg[1] end
     local Blocks = Build(toBuild)
     Blocks.Run()
     return {Lines = Blocks.Lines}
 end
+
+return Blocks
