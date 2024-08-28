@@ -21,16 +21,16 @@ test:
 	#./a.out *
 
 install:
-	cp srglue srlua $(INSTALL_DIR)
+	@cp srglue srlua $(INSTALL_DIR)
 
 clean:
-	rm -f srglue srlua a.out
+	@rm -f srglue srlua a.out
 
 Linux build:
-	$(CC) $(CFLAGS) -o srglue srglue.c
-	$(CC) $(MYCFLAGS) -o srlua srlua.c $(MYLIBS) $(MYLFLAGS)
+	@$(CC) $(CFLAGS) -o srglue srglue.c
+	@$(CC) $(MYCFLAGS) -o srlua srlua.c $(MYLIBS) $(MYLFLAGS)
 
 Darwin:
-	$(MAKE) build MYLFLAGS=
+	@$(MAKE) build MYLFLAGS=
 
 .PHONY: all bin test install clean Linux Darwin build
