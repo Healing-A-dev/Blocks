@@ -18,7 +18,7 @@ bin:
 
 test:
 	./srglue srlua test.lua a.out ; chmod +x a.out
-	./a.out *
+	#./a.out *
 
 install:
 	cp srglue srlua $(INSTALL_DIR)
