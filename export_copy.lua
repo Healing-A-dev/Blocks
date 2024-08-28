@@ -1,5 +1,4 @@
-
-local Blocks = require('./Blocks')
+dofile('./.blocks/Blocks.lua')
 local Blocks = Blocks
 local exported = {}
 local cmdL,silent = false,false
@@ -22,9 +21,9 @@ if #arg > 0 then
     elseif arg[1] == "-s" or arg[1] == "--silent" then
         silent = true
         table.remove(arg,1)
-    elseif
+    elseif arg[1] == "--update" or arg[1] == "-u"then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
-        os.execute('git clone '..update_path.." .BlockUPDATE")
+        os.execute('git clone '..update_path.." && rm -r .blocks && cd Blocks && make install")
     end
     files = table.concat(arg,",")
     cmdL = true
