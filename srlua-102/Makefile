@@ -17,7 +17,7 @@ bin:
 	@$(MAKE) `uname`
 
 test:
-	./srglue srlua test.lua a.out ; chmod +x a.out
+	@./srglue srlua test.lua a.out ; chmod +x a.out
 	#./a.out *
 
 install:
