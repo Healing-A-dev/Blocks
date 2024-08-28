@@ -11,7 +11,7 @@ if #arg > 0 then
         print([[
     -h --help: Displays this message.
            
-    -s --silent: Prevents lines from being printed (silent mode. NOTE: YOU WILL STILL BE ASKED FOR A FILE EXTENSION (IF MISSING) AND A PATH TO PUT THE FILES).
+    -s --silent: Prevents lines from being printed (NOTE: YOU WILL STILL BE ASKED FOR A FILE EXTENSION (IF MISSING) AND A PATH FOR THE OUTPUT FILES).
            
     -a --adv: Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
 
