@@ -24,6 +24,8 @@ if #arg > 0 then
     elseif arg[1] == "--update" or arg[1] == "-u"then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         os.execute('git clone '..update_path.." && rm -r .blocks && cd Blocks && make install")
+        print("\027[1m**Update Completed**\027[0m")
+        os.exit()
     end
     files = table.concat(arg,",")
     cmdL = true
