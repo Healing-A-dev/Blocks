@@ -83,9 +83,9 @@ if #exported > 0 then
                     os.execute('sleep 0.02')
                     holdBlocks[t].build(_:match('%..+$'),path..'/')
                     if not _:match('%..+') and not silent then
-                        print('\027[93m\tSuccessfully exported block \''..t..'\' to /'..path..'/'..t.._..'\027[0m')
+                        print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._..'\027[0m')
                     elseif not silent then
-                        print('\027[93m\tSuccessfully exported block \''..t..'\' to /'..path..'/'..t.._:match('%..+')..'\027[0m')
+                        print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._:match('%..+')..'\027[0m')
                     end
                 end
         end
