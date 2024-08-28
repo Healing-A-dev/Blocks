@@ -14,7 +14,7 @@ install:
 	sudo ./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build && sudo chmod +x blocks-build
 	mkdir $(MVDIR) && cp Blocks.lua $(MVDIR)
 	mv blocks-build $(INSTALL_PATH)
-	cd && rm -r Blocks -y
+	cd && rm -r Blocks
 Linux build:
 	cd /
 	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
