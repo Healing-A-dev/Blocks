@@ -15,7 +15,7 @@ if #arg > 0 then
            
     -a --adv: Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
 
-    -u --update: Updates the Blocks to the latest version.
+    -u --update: Updates Blocks to the latest version.
         ]])
         os.exit()
     elseif arg[1] == "-s" or arg[1] == "--silent" then
