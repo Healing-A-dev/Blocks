@@ -1,6 +1,6 @@
 CONST_NAME = .blocks
-INSTALL_PATH = /home/$(USER)
-MVDIR = $(INSTALL_PATH)/$(CONST_NAME)
+INSTALL_PATH = /usr/local/bin
+MVDIR = /home/$(USER)/$(CONST_NAME)
 
 all: bin test
 
