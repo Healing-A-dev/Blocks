@@ -63,7 +63,7 @@ for file in files:gmatch('[^,]+') do
     end
 end
 if #exported > 0 then
-    print('\n\nSuccessfully generated all blocks from \''..table.concat(exported,'\' and \'')..'\'')
+    if not silent then print('\n\nSuccessfully generated all blocks from \''..table.concat(exported,'\' and \'')..'\'') end
     os.execute('sleep 2')
     for _,i in pairs(exported) do
         if type(i) == 'table' then
