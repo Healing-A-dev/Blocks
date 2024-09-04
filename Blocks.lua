@@ -175,20 +175,8 @@ local function Build(file)
                     end
                 end
                 if name:find(".+/.+") then
-                    local newPathPaths = {}
-                    local maxTimes = 0
-                    for paths in name:gmatch("[^%/]+") do
-                        maxTimes = maxTimes + 1
-                    end
-                    for newPath in name:gmatch("[^%/]+") do
-                        if #newPathPaths < 1 then 
-                            os.execute("mkdir '"..path.."/"..newPath.."'")
-                            newPathPaths[#newPathPaths+1] = newPath
-                        elseif #newPathPaths >= 1 and #newPathPaths < maxTimes - 1 then
-                            os.execute("mkdir '"..path.."/"..table.concat(newPathPaths,"/").."/"..newPath.."'")
-                            newPathPaths[#newPathPaths+1] = newPath
-                        end
-                    end
+                    local name = name:gsub("%/.+$","")
+                    os.execute("mkdir -p '"..name.."'")
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
                 BlockFile:write("local "..name.." = {}\n\n"..table.concat(toRun,"\n").."\n\nreturn "..name)
