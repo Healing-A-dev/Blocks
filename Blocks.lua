@@ -175,7 +175,7 @@ local function Build(file)
                     end
                 end
                 if name:find(".+/.+") then
-                    local name = name:gsub("%/.+$","")
+                    --local name = name:gsub("%/.+$","")
                     print(name)
                     os.execute("mkdir -p '"..path.."/"..name.."'")
                 end
