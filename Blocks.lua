@@ -176,7 +176,8 @@ local function Build(file)
                 end
                 if name:find(".+/.+") then
                     local name = name:gsub("%/.+$","")
-                    os.execute("mkdir -p '"..name.."'")
+                    print(name)
+                    os.execute("mkdir -p '"..path.."/"..name.."'")
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
                 BlockFile:write("local "..name.." = {}\n\n"..table.concat(toRun,"\n").."\n\nreturn "..name)
