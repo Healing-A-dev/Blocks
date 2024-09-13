@@ -38,11 +38,13 @@ if #arg > 0 then
         local answer = io.read()
         if answer:lower() == "y" then
             local processes = {
-                "sudo cd /usr/local/bin",
-                "sudo rm -f blocks",
+                "sudo su"
+                "cd /usr/local/bin",
+                "rm -f blocks",
                 "cd",
                 "rm -rf .blocks",
-                "rm -f blocks"
+                "rm -f blocks",
+                "exit"
             }
             print("\027[1m**Uninstalling Blocks**\027[0m")
             for _,process in ipairs(processes) do
