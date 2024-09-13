@@ -11,7 +11,7 @@ test:
 	./example/buildTest/helloWorld.out *
 install:
 	@cd srlua-102 && make && cd ..
-	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build && chmod +x blocks
+	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks && chmod +x blocks
 	@mkdir $(MVDIR) && cp Blocks.lua $(MVDIR)
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
