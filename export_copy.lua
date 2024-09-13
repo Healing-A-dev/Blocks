@@ -42,7 +42,7 @@ if #arg > 0 then
             "rm -f .blocks",
             "rm -f blocks-build"
         }
-        for _,process in processes do
+        for _,proc in processes do
             if _ == 2 then
                 print("\027[96m=> Removing blocks-build from usr/local/bin\027[0m")
             elseif _ == 3 then
@@ -50,7 +50,7 @@ if #arg > 0 then
             elseif _ == 4 then
                 print("\027[96m=> Removing blocks-build from /home/"..os.getenv("USER").."\027[0m")
             end
-            os.execute(process.." && sleep 0.2")
+            os.execute(proc.." && sleep 0.2")
         end
         print("im working on it now :hehe:")
         os.exit()
