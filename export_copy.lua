@@ -1,4 +1,9 @@
 dofile('./.blocks/Blocks.lua')
+--[[
+CONST_NAME = .blocks
+INSTALL_PATH = /usr/local/bin
+MVDIR = /home/$(USER)/$(CONST_NAME)
+]]
 local Blocks = Blocks
 local exported = {}
 local cmdL,silent = false,false
@@ -30,6 +35,23 @@ if #arg > 0 then
         os.exit()
     elseif arg[1] == "-R" or arg[1] == "--uninstall" then
         print("\027[1m**Uninstalling Blocks**\027[0m")
+        local processes = {
+            "cd /usr/local/bin",
+            "sudo rm -f blocks-build",
+            "cd",
+            "rm -f .blocks",
+            "rm -f blocks-build"
+        }
+        for _,process in processes do
+            if _ == 2 then
+                print("\027[96m=> Removing blocks-build from usr/local/bin\027[0m")
+            elseif _ == 3 then
+                print("\027[96m=> Removing .blocks from /home/"..os.getenv("USER").."\027[0m")
+            elseif _ == 4 then
+                print("\027[96m=> Removing blocks-build from /home/"..os.getenv("USER").."\027[0m")
+            end
+            os.execute(process.." && sleep 0.2")
+        end
         print("im working on it now :hehe:")
         os.exit()
     end
