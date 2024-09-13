@@ -34,18 +34,18 @@ if #arg > 0 then
         print("\027[1m**Update Completed**\027[0m")
         os.exit()
     elseif arg[1] == "-R" or arg[1] == "--uninstall" then
-        print("\027[1m**Uninstalling Blocks**\027[0m")
-        local processes = {
-            "cd /usr/local/bin",
-            "sudo rm -f blocks-build",
-            "cd",
-            "rm -rf .blocks",
-            "rm -f blocks-build"
-        }
-        for _,process in ipairs(processes) do
-            io.write("Are you sure you want to uninstall Blocks? [Y/n]: ")
-            local answer = io.read()
-            if answer:lower() == "y" then
+        io.write("Are you sure you want to uninstall Blocks? [Y/n]: ")
+        local answer = io.read()
+        if answer:lower() == "y" then
+            local processes = {
+                "cd /usr/local/bin",
+                "sudo rm -f blocks-build",
+                "cd",
+                "rm -rf .blocks",
+                "rm -f blocks-build"
+            }
+            print("\027[1m**Uninstalling Blocks**\027[0m")
+            for _,process in ipairs(processes) do
                 if _ == 2 then
                     print("\027[96m=> Removing blocks-build from usr/local/bin\027[0m")
                 elseif _ == 3 then
@@ -55,9 +55,12 @@ if #arg > 0 then
                 end
                 os.execute(process.." && sleep 0.2")
             end
+            print("\027[1m**Successfully Uninstalled Blocks**\027[0m")
+            os.exit()
+        else
+            print("\027[1m**Uninstall Process Terminated**\027[0m")
+            os.exit()
         end
-        print("im working on it now :hehe:")
-        os.exit()
     end
     files = table.concat(arg,",")
     cmdL = true
