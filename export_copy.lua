@@ -30,7 +30,7 @@ if #arg > 0 then
     elseif arg[1] == "--update" or arg[1] == "-u" then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         print("\027[1m**Starting Update**\027[0m")
-        os.execute('git clone '..update_path.." && rm -r .blocks && cd Blocks && sudo make install")
+        os.execute('git clone '..update_path.." && rm -r .blocks && cd Blocks && make install")
         print("\027[1m**Update Completed**\027[0m")
         os.exit()
     elseif arg[1] == "-R" or arg[1] == "--uninstall" then
