@@ -1,6 +1,6 @@
 CONST_NAME = .blocks
 INSTALL_PATH = /usr/local/bin
-MVDIR = /home/$(USER)/$(CONST_NAME)
+MVDIR = /home/$(USERNAME)/$(CONST_NAME)
 
 all: bin test
 
@@ -13,7 +13,7 @@ install:
 	@cd srlua-102 && make && cd ..
 	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build && chmod +x blocks-build
 	@mkdir $(MVDIR) && cp Blocks.lua $(MVDIR)
-	@cp blocks-build /home/$(USER)
+	@cp blocks-build /home/$(USERNAME)
 	@sudo mv -f blocks-build $(INSTALL_PATH)
 	@cd && rm -rf Blocks
 Linux build:
