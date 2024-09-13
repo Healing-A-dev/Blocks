@@ -39,19 +39,19 @@ if #arg > 0 then
         if answer:lower() == "y" then
             local processes = {
                 "cd /usr/local/bin",
-                "sudo rm -f blocks-build",
+                "sudo rm -f blocks",
                 "cd",
                 "rm -rf .blocks",
-                "rm -f blocks-build"
+                "rm -f blocks"
             }
             print("\027[1m**Uninstalling Blocks**\027[0m")
             for _,process in ipairs(processes) do
                 if _ == 2 then
-                    print("\027[96m=> Removing blocks-build from usr/local/bin\027[0m")
+                    print("\027[96m=> Removing blocks from usr/local/bin\027[0m")
                 elseif _ == 3 then
                     print("\027[96m=> Removing .blocks from /home/"..os.getenv("USER").."\027[0m")
                 elseif _ == 4 then
-                    print("\027[96m=> Removing blocks-build from /home/"..os.getenv("USER").."\027[0m")
+                    print("\027[96m=> Removing blocks from /home/"..os.getenv("USER").."\027[0m")
                 end
                 os.execute(process.." && sleep 0.2")
             end
