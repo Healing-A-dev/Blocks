@@ -38,7 +38,6 @@ if #arg > 0 then
         local answer = io.read()
         if answer:lower() == "y" then
             local processes = {
-                "sudo su && exit",
                 "cd /usr/local/bin",
                 "rm -f blocks",
                 "cd",
