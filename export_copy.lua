@@ -43,14 +43,18 @@ if #arg > 0 then
             "rm -f blocks-build"
         }
         for _,process in ipairs(processes) do
-            if _ == 2 then
-                print("\027[96m=> Removing blocks-build from usr/local/bin\027[0m")
-            elseif _ == 3 then
-                print("\027[96m=> Removing .blocks from /home/"..os.getenv("USER").."\027[0m")
-            elseif _ == 4 then
-                print("\027[96m=> Removing blocks-build from /home/"..os.getenv("USER").."\027[0m")
+            io.write("Are you sure you want to uninstall Blocks? [Y/n]: ")
+            local answer = io.read()
+            if answer:lower() == "y" then
+                if _ == 2 then
+                    print("\027[96m=> Removing blocks-build from usr/local/bin\027[0m")
+                elseif _ == 3 then
+                    print("\027[96m=> Removing .blocks from /home/"..os.getenv("USER").."\027[0m")
+                elseif _ == 4 then
+                    print("\027[96m=> Removing blocks-build from /home/"..os.getenv("USER").."\027[0m")
+                end
+                os.execute(process.." && sleep 0.2")
             end
-            os.execute(process.." && sleep 0.2")
         end
         print("im working on it now :hehe:")
         os.exit()
