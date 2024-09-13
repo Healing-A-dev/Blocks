@@ -38,7 +38,7 @@ if #arg > 0 then
         local answer = io.read()
         if answer:lower() == "y" then
             local processes = {
-                "cd /usr/local/bin",
+                "sudo cd /usr/local/bin",
                 "sudo rm -f blocks",
                 "cd",
                 "rm -rf .blocks",
