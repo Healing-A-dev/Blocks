@@ -41,7 +41,7 @@ for file in files:gmatch('[^,]+') do
         end
     else
         if not silent then
-            print('\n\027[92mGenerating Blocks from file \''..file..'\':\027[0m')
+            print('\n\027[92m=> Generating Blocks from file \''..file..'\':\027[0m')
         end
         Blocks.BuildFromFile(file,"",cmdL)
         local toExport = Blocks.ShowAllBlocks('-s')
