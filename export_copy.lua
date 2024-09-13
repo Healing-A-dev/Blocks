@@ -15,16 +15,22 @@ if #arg > 0 then
            
     -a --adv: Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
 
-    -u --update: Updates Blocks to the latest version.]])
+    -u --update: Updates Blocks to the latest version.
+            
+    -R --uninstall: Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "-s" or arg[1] == "--silent" then
         silent = true
         table.remove(arg,1)
-    elseif arg[1] == "--update" or arg[1] == "-u"then
+    elseif arg[1] == "--update" or arg[1] == "-u" then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         print("\027[1m**Starting Update**\027[0m")
         os.execute('git clone '..update_path.." && rm -r .blocks && cd Blocks && sudo make install")
         print("\027[1m**Update Completed**\027[0m")
+        os.exit()
+    elseif arg[1] == "-R" or arg[1] == "--uninstall" then
+        print("\027[1m**Uninstalling Blocks**\027[0m")
+        print("im working on it now :hehe:")
         os.exit()
     end
     files = table.concat(arg,",")
