@@ -39,7 +39,7 @@ if #arg > 0 then
             "cd /usr/local/bin",
             "sudo rm -f blocks-build",
             "cd",
-            "rm -f .blocks",
+            "rm -rf .blocks",
             "rm -f blocks-build"
         }
         for _,process in ipairs(processes) do
