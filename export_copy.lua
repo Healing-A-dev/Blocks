@@ -22,7 +22,7 @@ local function getConfig()
     for line in lines do
         local var,value = line:match("(.+):%s?(.+)")
         print(var,value)
-        --_G[var] = value
+        _G[var] = value
     end
 end
 
