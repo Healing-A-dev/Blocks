@@ -13,6 +13,7 @@ holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
 
 
 local function getConfig()
+    Config = {}
     local file = io.open(".blocks/config.yaml","r")
     if file == nil then
         error("NO CONFIG FILE")
@@ -23,8 +24,9 @@ local function getConfig()
     for line in lines do
         if currentLine > 1 and #line:gsub("%s+","") > 0 then
             line = line:gsub("^%s+",""):gsub("%s+$","")
-            local var,value = line:match("^(.+):(.+)")
-            _G[var] = value:gsub("['\"]","")
+            local var = line:match("^.+:"):gsub("%:","")
+            local value = line:match(":.+"):gsub("^%s+",""):gsub("^:","")
+            _G[var] = load("return "..value)
         end
         currentLine = currentLine + 1
     end
