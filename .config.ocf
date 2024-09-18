@@ -1,0 +1,4 @@
+//Blocks Configuration File:
+
+&Blocks.Config:
+    __NAME => "Blocks";  
