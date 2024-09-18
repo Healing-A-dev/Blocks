@@ -144,9 +144,9 @@ if #arg > 0 then
         cmdL = true
         export()
     end
-else
+elseif #arg == 0 then
     print([[Blocks:
-    Version: 0.01
+    Version:\027[95m 0.01\027[0m
     
     "Why not make a file within a file?" - Healing
     ]])
