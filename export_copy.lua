@@ -20,7 +20,7 @@ local function getConfig()
     local lines = file:lines()
     local config = {}
     for line in lines do
-        local var,value = line:match("(__%w+):(%W+)")
+        local var,value = line:match("(__%w+):(%w+)")
         _G[var] = value
     end
 end
