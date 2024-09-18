@@ -169,7 +169,7 @@ if #arg > 0 then
 elseif #arg == 0 then
     getConfig()
     print([[Blocks:
-    Version:]].."\027[95m "..__VERSION.."\027[0m"..[[
+    Version:]].."\027[95m "..__VERSION().."\027[0m"..[[
 
     Use 'blocks -h' or 'blocks --help' for help.
     
