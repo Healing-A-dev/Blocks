@@ -21,8 +21,9 @@ local function getConfig()
     local config = {}
     for line in lines do
         local var,value = line:match("(%w+)%s?=%s?(%w+)")
+        print(line:match("%w+:"))
         print(var,value)
-        _G[var] = value
+        --_G[var] = value
     end
 end
 
