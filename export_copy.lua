@@ -19,7 +19,6 @@ local function getConfig()
         error("NO CONFIG FILE")
     end
     local lines = file:lines()
-    local config = {}
     local currentLine = 1
     for line in lines do
         if currentLine > 1 and #line:gsub("%s+","") > 0 then
