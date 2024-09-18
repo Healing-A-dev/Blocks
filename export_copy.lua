@@ -19,10 +19,13 @@ local function getConfig()
     end
     local lines = file:lines()
     local config = {}
+    local currentLine = 1
     for line in lines do
-        local var,value = line:match("(.+):%s?(.+)")
-        print(var,value)
-        _G[var] = value
+        if currentLine > 1 and #line:gsub("%s+") > 0 then 
+            local var,value = line:match("(.+):%s?(.+)")
+            print(var,value)
+            _G[var] = value
+        end
     end
 end
 
