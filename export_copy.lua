@@ -76,7 +76,7 @@ local function export()
                 else
                     filext = ""
                 end
-                _ = _..filext
+                _ = __DEFAULT_EXT or _..filext
                 io.write('\nInsert path to export to (default path = /'.._:gsub('%..+$','')..'):\n> ')
                 local path = io.read()
                 if path == '' then path = _:gsub('%..+$','') end
