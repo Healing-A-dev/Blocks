@@ -179,8 +179,8 @@ local function Build(file)
                     os.execute("mkdir -p '"..path.."/"..name.."'")
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
-                local Header,Footer = load("function rh(); return "..__HEADER.."; end")() or "local "..name.." = {}", __FOOTER or "return "..name
-                BlockFile:write(Header.."\n\n"..table.concat(toRun,"\n").."\n\n"..Footer)
+                local Header,Footer = load("function rh(); return "..__HEADER.."; end") or "local "..name.." = {}", __FOOTER or "return "..name
+                BlockFile:write(Header().."\n\n"..table.concat(toRun,"\n").."\n\n"..Footer)
                 BlockFile:close()
                 return path..name
             end
