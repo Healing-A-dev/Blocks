@@ -21,7 +21,8 @@ local function getConfig()
     local config = {}
     local currentLine = 1
     for line in lines do
-        if currentLine > 1 and #line:gsub("%s+") > 0 then 
+        if currentLine > 1 and #line:gsub("%s+") > 0 then
+            line = line:gsub("^%s+","")
             local var,value = line:match("(.+):%s?(.+)")
             print(var,value)
             _G[var] = value
