@@ -13,7 +13,7 @@ holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
 
 
 local function getConfig()
-    local file = io.open("config.ocf","r")
+    local file = io.open(".blocks/config.ocf","r")
     if file == nil then
         error("NO CONFIG FILE")
     end
