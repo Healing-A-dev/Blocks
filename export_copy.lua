@@ -12,6 +12,14 @@ local files
 holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
 
 
+local function getConfig()
+    local file = io.open(".config.ocf","r")
+    if file == nil then
+        error("NO CONFIG FILE")
+    end
+end
+
+
 local function export()
     if arg[1] == nil then
         io.write('Insert File(s) To Export Blocks From: \n> ')
@@ -145,6 +153,7 @@ if #arg > 0 then
         export()
     end
 elseif #arg == 0 then
+    getConfig()
     print([[Blocks:
     Version:]].."\027[95m 0.01\027[0m"..[[
 
