@@ -1,4 +1,3 @@
-//Blocks Configuration File:
-
-&Blocks.Config:
-    __NAME => "Blocks";  
+#Blocks Configuration File:
+__NAME: "Blocks"
+__VERSION: 0.1.0
