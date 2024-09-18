@@ -26,7 +26,7 @@ local function getConfig()
             local var = line:match("__%w+:"):gsub("%:","")
             local value = line:match(":.+"):gsub("^%s+",""):gsub("^:","")
             print(var,value)
-            _G[var] = load("function () return "..value.." end")
+            _G[var] = load("function() return "..value.." end")
         end
         currentLine = currentLine + 1
     end
