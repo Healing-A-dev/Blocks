@@ -146,7 +146,7 @@ if #arg > 0 then
     end
 elseif #arg == 0 then
     print([[Blocks:
-    Version:\027[95m 0.01\027[0m
+    Version:]].."\027[95m 0.01\027[0m"..[[
     
     "Why not make a file within a file?" - Healing
     ]])
