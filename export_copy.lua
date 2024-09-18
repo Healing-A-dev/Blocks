@@ -23,7 +23,7 @@ local function getConfig()
     for line in lines do
         if currentLine > 1 and #line:gsub("%s+","") > 0 then
             line = line:gsub("^%s+",""):gsub("%s+$","")
-            local var,value = line:match("(^.+):%s?(.+)")
+            local var,value = line:match("(.+):%s?(.+)")
             print(var,value)
             _G[var] = value
         end
