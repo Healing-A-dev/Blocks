@@ -27,6 +27,7 @@ local function getConfig()
             print(var,value)
             _G[var] = value
         end
+        currentLine = currentLine + 1
     end
 end
 
