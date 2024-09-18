@@ -24,7 +24,7 @@ local function getConfig()
     for line in lines do
         if currentLine > 1 and #line:gsub("%s+","") > 0 then
             line = line:gsub("^%s+",""):gsub("%s+$","")
-            local var = line:match("^.+:"):gsub("%:","")
+            local var = line:match(".+^:"):gsub("%:","")
             local value = line:match(":.+"):gsub("^%s+",""):gsub("^:","")
             print(var,value)
             _G[var] = load("return "..value)
