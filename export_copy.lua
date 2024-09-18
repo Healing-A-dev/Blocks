@@ -32,6 +32,7 @@ end
 
 
 local function export()
+    getConfig()
     if arg[1] == nil then
         io.write('Insert File(s) To Export Blocks From: \n> ')
         files = io.read()
