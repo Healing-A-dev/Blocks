@@ -20,8 +20,7 @@ local function getConfig()
     local lines = file:lines()
     local config = {}
     for line in lines do
-        local var,value = line:match("(%w+)%s?=%s?(%w+)")
-        print(line:match("(.+):%s?(.+)"))
+        local var,value = line:match("(.+):%s?(.+)")
         print(var,value)
         --_G[var] = value
     end
