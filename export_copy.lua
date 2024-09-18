@@ -17,6 +17,12 @@ local function getConfig()
     if file == nil then
         error("NO CONFIG FILE")
     end
+    local lines = file:lines()
+    local config = {}
+    for line in lines do
+        local var,value = line:match("(__%w+):(%W+)")
+        _G[var] = value
+    end
 end
 
 
