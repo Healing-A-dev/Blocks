@@ -24,7 +24,6 @@ local function getConfig()
         if currentLine > 1 and #line:gsub("%s+","") > 0 then
             line = line:gsub("^%s+",""):gsub("%s+$","")
             local var,value = line:match("(.+):%s?(.+)")
-            print(var,value)
             _G[var] = value
         end
         currentLine = currentLine + 1
@@ -167,7 +166,7 @@ if #arg > 0 then
 elseif #arg == 0 then
     getConfig()
     print([[Blocks:
-    Version:]].."\027[95m"..__VERSION.."\027[0m"..[[
+    Version:]].."\027[95m "..__VERSION.."\027[0m"..[[
 
     Use 'blocks -h' or 'blocks --help' for help.
     
