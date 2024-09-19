@@ -1,3 +1,4 @@
 #Blocks Configuration File:
 __NAME: "Blocks"
 __VERSION: 0.1.0
+__HEADER: "Title: ": $Name
