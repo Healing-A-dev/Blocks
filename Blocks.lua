@@ -125,6 +125,10 @@ local function Build(file)
     -- ADDING UTILITY FUNCTIONS TO ALL BLOCKS IN THE BLOCK TABLE --
     for name,i in pairs(Blocks) do
         if type(i) == "table" then
+            local Name = {}
+            Name["name*"] = name
+            Name["name"] = name:match("%/%S+$")
+            if Name["name"] == nil then Name["name"] = Name["name*"] else Name["name"] = Name["name"]:gsub("%/","") end
             Blocks[name].run = function()
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
@@ -179,7 +183,25 @@ local function Build(file)
                     os.execute("mkdir -p '"..path.."/"..name.."'")
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
-                local Header,Footer = load(__HEADER)() or "local "..name.." = {}", __FOOTER or "return "..name
+                local Header,Footer = "local "..name.." = {}","return "..name
+                if __HEADER ~= nil then
+                    __HEADER = __HEADER:gsub("['\"]","")
+                    if __HEADER:find(":.+$") then
+                        local toReplace = __HEADER:match("%$%S+"):gsub("[%:%s+%$]","")
+                        Header = __HEADER:gsub(":%s+%$%w+",Name[toReplace:lower()]):gsub("%*$",""):gsub("^%s+","")
+                    else
+                        Header = __HEADER
+                    end
+                end
+                if __FOOTER ~= nil then
+                    __FOOTER = __FOOTER:gsub("['\"]","")
+                    if __FOOTER:find(":.+$") then 
+                        local toReplace = __FOOTER:match("%$%S+"):gsub("[%:%s+%$]","")
+                        Footer = __FOOTER:gsub(":%s+%$%w+",Name[toReplace:lower()]):gsub("%*$",""):gsub("^%s+","")
+                    else
+                        Footer = __FOOTER
+                    end
+                end
                 BlockFile:write(Header.."\n\n"..table.concat(toRun,"\n").."\n\n"..Footer)
                 BlockFile:close()
                 return path..name
