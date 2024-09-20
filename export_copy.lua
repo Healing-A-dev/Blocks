@@ -13,7 +13,6 @@ holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
 
 
 local function getConfig()
-    Config = {}
     local file = io.open(".blocks/config.yaml","r")
     if file == nil then
         error("NO CONFIG FILE")
