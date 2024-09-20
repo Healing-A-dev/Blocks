@@ -78,8 +78,8 @@ local function export()
                     filext = ""
                 end
                 if __EXT ~= nil then 
-                    __EXT = __EXT:gsub("['\"]","")
-                    _ = _..__EXT
+                    __EXT = __EXT:gsub("['\"]",""):gsub("^%s+","")
+                    _ = _:gsub("%..+$",__EXT)
                 else
                     _ = _..filext
                 end
