@@ -77,6 +77,7 @@ local function export()
                 else
                     filext = ""
                 end
+                if __EXT ~= nil then __EXT = __EXT:gsub("['\"]","") end
                 _ = _..__EXT or _..filext
                 io.write('\nInsert path to export to (default path = /'.._:gsub('%..+$','')..'):\n> ')
                 local path = io.read()
