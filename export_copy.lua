@@ -144,7 +144,7 @@ if #arg > 0 then
         local config = updateConfig()
         print("=> Cloning git repository:")
         os.execute('git clone '..update_path.." && rm -r .blocks && cd Blocks && make install")
-        print("=> Updating new config file:")
+        print("=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         for _,i in pairs(config) do
             print("\tCopied "..i:match("^__%w+"")
