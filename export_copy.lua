@@ -168,6 +168,8 @@ if #arg > 0 then
         silent = true
         cmdL = true
         export()
+    else
+        print("blocks: "..arg[1]..": command not found")
     end
 elseif #arg == 0 then
     getConfig()
