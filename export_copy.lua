@@ -169,7 +169,7 @@ if #arg > 0 then
         cmdL = true
         export()
     else
-        print("blocks: "..arg[1]..": command not found")
+        print("blocks: command "..arg[1].." was not found")
     end
 elseif #arg == 0 then
     getConfig()
