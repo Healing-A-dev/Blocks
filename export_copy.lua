@@ -149,7 +149,7 @@ if #arg > 0 then
         for _,i in pairs(config) do
             --print("\tCopied "..i:match("^__%w+"))
             print(i)
-            file:write(i)
+            file:write(i.."\n")
         end
         file:close()
         print("\027[1m**Update Completed**\027[0m")
