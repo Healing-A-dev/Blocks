@@ -147,7 +147,7 @@ if #arg > 0 then
         print("=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         for _,i in pairs(config) do
-            print("\tCopied "..i:match("__%w+"))
+            print("Copied: "..i:match("__%w+").." configuration")
             file:write(i.."\n")
         end
         file:close()
