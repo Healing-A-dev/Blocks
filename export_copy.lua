@@ -87,7 +87,7 @@ local function export()
         os.execute('sleep 2')
         for _,i in pairs(exported) do
             if type(i) == 'table' then
-                if type(_) == "string" and not _:find("%..+$") then
+                if type(_) == "string" and not _:find("%..+$") and __EXT == nil then
                     io.write('\n\027[93m[No File Extension(s) Found]\027[0m Insert a file extension to assign to blocks:\n'.._..'>')
                     filext = io.read()
                 else
