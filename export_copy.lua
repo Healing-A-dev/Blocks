@@ -95,7 +95,11 @@ local function export()
                 end
                 if __EXT ~= nil then 
                     __EXT = __EXT:gsub("['\"]",""):gsub("^%s+","")
-                    _ = _:gsub("%..+$",__EXT)
+                    if _:find("%..+$") then
+                        _ = _:gsub("%..+$",__EXT)
+                    else
+                        _ = _..__EXT
+                    end
                 else
                     _ = _..filext
                 end
