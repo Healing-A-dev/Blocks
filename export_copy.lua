@@ -15,7 +15,7 @@ holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
 local function getConfig()
     local file = io.open(".blocks/config.yaml","r")
     if file == nil then
-        error("NO CONFIG FILE")
+        error("Missing .blocks/config.yaml")
     end
     local lines = file:lines()
     local currentLine = 1
