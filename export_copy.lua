@@ -204,7 +204,7 @@ available operations:
 elseif #arg == 0 then
     getConfig()
     print([[Blocks:
-    Version:]].."\027[95m"..__VERSION.."\027[0m"..[[
+    Version:]]..__VERSION..[[
 
     Use 'blocks -h' or 'blocks --help' for help.
     
