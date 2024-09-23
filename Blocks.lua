@@ -1,8 +1,7 @@
 Blocks = {}
 local function partialBuild(name,file)
     Blocks[name] = {}
-    if not file:find("%..+") then file = file..".bkf" end
-    Blocks[name].runFile = file
+    Blocks[name].runFile = arg[1] or file
     Blocks[name].run = function()
         local runFileLines = {}
         local blockLines = {}
@@ -249,10 +248,10 @@ function Blocks.NewBlock(BlockName,extension,runFile,skip_nil_blocks)
     partialBuild(BlockName,runFile)
     -- ADDING BLOCK EXTENSIONS --
     for ext in extension.extensions:gmatch("%S+") do
-        if Blocks[ext] == nil and not skip_nil_blocks then
-            error("Blocks <Error>"..arg[0]..": Block '"..ext.."' does not exsit")
-        elseif ext == ".VOID" and extension.extensions:gsub("%s+") == ".VOID" then
+        if ext == ".VOID" and extension.extensions:gsub("%s+","") == ".VOID" then
             return
+        elseif Blocks[ext] == nil and not skip_nil_blocks then
+            error("Blocks <Error>"..arg[0]..": Block '"..ext.."' does not exsit")
         else
             Blocks[BlockName][ext] = Blocks[ext]
         end
