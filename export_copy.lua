@@ -134,7 +134,7 @@ if #arg > 0 then
     available operations:
         -h --help:                      Displays this message.
         -e --export:                    Runs the 'Blocks Export Tool'.
-        -se --silent_silent_export:     Runs the 'Blocks Export Tool' and prevents the proccess lines from being printed
+        -se --silent_silent_export:     Runs the 'Blocks Export Tool' and prevents the process lines from being printed
         -a --adv:                       Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
         -u --update:                    Updates Blocks to the latest version.
         -R --uninstall:                 Uninstall Blocks and remove all saved blocks.]])
