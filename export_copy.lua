@@ -197,14 +197,14 @@ available operations:
         export()
     elseif arg[1] == "-v" or arg[1] == "--version" then
         getConfig()
-        print("Version: "..__VERSION)
+        print("Version: \027[95m"..__VERSION.."\027[0m)
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
 elseif #arg == 0 then
     getConfig()
     print([[Blocks:
-    Version:]]..__VERSION..[[
+    Version:]].."\027[95m"..__VERSION..[[\027[0m
 
     Use 'blocks -h' or 'blocks --help' for help.
     
