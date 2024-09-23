@@ -197,7 +197,7 @@ available operations:
         export()
     elseif arg[1] == "-v" or arg[1] == "--version" then
         getConfig()
-        print("Version: "__VERSION)
+        print("Version: "..__VERSION)
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
