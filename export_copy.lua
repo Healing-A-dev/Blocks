@@ -135,8 +135,9 @@ available operations:
     -h --help:               Displays this message.
     -e --export:             Runs the 'Blocks Export Tool'.
     -se --silent_export:     Runs the 'Blocks Export Tool' and prevents the process lines from being printed
-    -a --adv:                Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
+    -a --adv:                Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
     -u --update:             Updates Blocks to the latest version.
+    -v --version:            Displays the current version.
     -R --uninstall:          Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
@@ -194,6 +195,9 @@ available operations:
         silent = true
         cmdL = true
         export()
+    elseif arg[1] == "-v" or arg[1] == "--version" then
+        getConfig()
+        print("Version: "__VERSION)
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
