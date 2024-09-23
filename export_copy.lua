@@ -197,7 +197,7 @@ available operations:
         export()
     elseif arg[1] == "-v" or arg[1] == "--version" then
         getConfig()
-        print("Version: \027[95m"..__VERSION.."\027[0m)
+        print("Version: \027[95m"..__VERSION.."\027[0m")
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
