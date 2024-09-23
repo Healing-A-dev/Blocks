@@ -130,14 +130,14 @@ end
 if #arg > 0 then
     if arg[1] == "-h" or arg[1] == "--help" then
         print([[
-    usage: blocks <operation> [...]
-    available operations:
-        -h --help:               Displays this message.
-        -e --export:             Runs the 'Blocks Export Tool'.
-        -se --silent_export:     Runs the 'Blocks Export Tool' and prevents the process lines from being printed
-        -a --adv:                Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
-        -u --update:             Updates Blocks to the latest version.
-        -R --uninstall:          Uninstall Blocks and remove all saved blocks.]])
+usage: blocks <operation> [...]
+available operations:
+    -h --help:               Displays this message.
+    -e --export:             Runs the 'Blocks Export Tool'.
+    -se --silent_export:     Runs the 'Blocks Export Tool' and prevents the process lines from being printed
+    -a --adv:                Advacent mode. Lets you choose where every block is placed and the file extension for each individual block.
+    -u --update:             Updates Blocks to the latest version.
+    -R --uninstall:          Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
