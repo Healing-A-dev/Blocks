@@ -132,9 +132,10 @@ local function export()
                             io.write("\nInsert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'): ")
                             local newEXT = io.read()
                             if newEXT ~= "" then
-                               ext = _:gsub("%..+$",newEXT)
+                               ext = _:match("[^/]+$") or _
+                               ext = ext:gsub("%..+$",newEXT)
                             else
-                                ext = _
+                                ext = _:match("[^/]+$")
                             end
                             io.write("\nInsert path to export to (default path = "..ext:gsub("%..+$","").."): ")
                             local path = io.read()
