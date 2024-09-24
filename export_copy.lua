@@ -133,6 +133,8 @@ local function export()
                             local newEXT = io.read()
                             if newEXT ~= "" then
                                ext = _:gsub("%..+$",newEXT)
+                            else
+                                ext = _
                             end
                             io.write("\nInsert path to export to (default path = "..ext:gsub("%..+$","").."): ")
                             local path = io.read()
