@@ -201,7 +201,7 @@ available operations:
         cmdL = true
         export()
     elseif arg[1] == "-a" or arg[1] == "--advanced_export" then
-        table.remove(arg,[1])
+        table.remove(arg,1)
         files = table.concat(arg,",")
         cmdL = true
         advanced_mode = true
