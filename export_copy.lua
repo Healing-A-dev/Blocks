@@ -133,6 +133,7 @@ local function export()
                             local newEXT = io.read()
                             if newEXT ~= "" then
                                ext = _:match("[^/]+$") or _
+                                print(ext)
                                ext = ext:gsub("%..+$",newEXT)
                             else
                                 ext = _:match("[^/]+$")
@@ -141,7 +142,7 @@ local function export()
                             local path = io.read()
                             if path == "" then path = ext:gsub("%..+$","") end
                             holdBlocks[block].build(ext:match("%..+$"),path.."/")
-                            print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..ext.."'\027[0m") 
+                            print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..block.."."..ext:match("%..+$").."'\027[0m") 
                         end
                     end
                 end
