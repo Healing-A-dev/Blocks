@@ -138,8 +138,8 @@ local function export()
                             end
                             io.write("\nInsert path to export to (default path = "..ext:gsub("%..+$","").."): ")
                             local path = io.read()
-                            if path == "" then path = _:gsub("%..+$","") end
-                            holdBlocks[block].build(_:match("%..+$"),path.."/")
+                            if path == "" then path = ext:gsub("%..+$","") end
+                            holdBlocks[block].build(ext:match("%..+$"),path.."/")
                             print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..ext.."'\027[0m") 
                         end
                     end
