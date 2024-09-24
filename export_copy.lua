@@ -117,21 +117,23 @@ local function export()
                     end
                 else
                     ::restart_process::
-                    print("Enter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAllBlocks' to see all available blocks):\n> ")
+                    print("\nEnter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAllBlocks' to see all available blocks):\n> ")
                     local blocks = io.read()
                     if blocks:gsub("%s+","") == "Blocks.ShowAllBlocks" then
-                        Blocks.ShowAllBlocks()
+                        for _,i in pairs(holdBlocks) do
+                            print("Block: ".._)
+                        end
                         goto restart_process
                     end
                     for block in blocks:gmatch("[^%,]+") do
                         local block = block:gsub("%s+","")
                         if holdBlocks[block] ~= nil then
-                            io.write("Insert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'): ")
+                            io.write("\nInsert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'): ")
                             local newEXT = io.read()
                             if newEXT ~= "" then
                                 _ = _:gsub("%..+$",newEXT)
                             end
-                            io.write("Insert path to export to (default path = ".._:gsub("%..+$","").."):\n> ")
+                            io.write("\nInsert path to export to (default path = ".._:gsub("%..+$","").."):\n> ")
                             local path = io.read()
                             if path == "" then path = _:gsub("%..+$","") end
                             holdBlocks[block].build(_:match("%..+$"),path.."/")
