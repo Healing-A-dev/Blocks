@@ -127,13 +127,14 @@ local function export()
                     end
                     for block in blocks:gmatch("[^%,]+") do
                         local block = block:gsub("%s+","")
+                        local ext = ""
                         if holdBlocks[block] ~= nil then
-                            io.write("\nInsert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'):> ")
+                            io.write("\nInsert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'): ")
                             local newEXT = io.read()
                             if newEXT ~= "" then
-                               local ext = _:gsub("%..+$",newEXT)
+                               ext = _:gsub("%..+$",newEXT)
                             end
-                            io.write("\nInsert path to export to (default path = "..ext:gsub("%..+$","").."):\n> ")
+                            io.write("\nInsert path to export to (default path = "..ext:gsub("%..+$","").."): ")
                             local path = io.read()
                             if path == "" then path = _:gsub("%..+$","") end
                             holdBlocks[block].build(_:match("%..+$"),path.."/")
