@@ -133,7 +133,7 @@ local function export()
                             local newEXT = io.read()
                             if newEXT ~= "" then
                                ext = block:match("[^/]+$") or block 
-                               ext = ext:gsub("%..+$",newEXT)
+                               ext = ext..newEXT
                             else
                                 ext = _:match("[^/]+$")
                             end
