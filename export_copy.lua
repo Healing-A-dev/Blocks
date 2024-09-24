@@ -117,7 +117,7 @@ local function export()
                     end
                 else
                     ::restart_process::
-                    io.write("\nEnter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAllBlocks' to see all available blocks):\n> ")
+                    io.write("\nEnter the name(s) or group(s) of blocks to export:\n> ")
                     local blocks = io.read()
                     if blocks:gsub("%s+","") == "Blocks.ShowAllBlocks" then
                         for _,i in pairs(holdBlocks) do
