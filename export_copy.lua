@@ -6,11 +6,10 @@ MVDIR = /home/$(USER)/$(CONST_NAME)
 ]]
 local Blocks = Blocks
 local exported = {}
-local cmdL,silent = false,false
+local cmdL,silent,advanced_mode = false,false,false
 local filext = ""
 local files
 holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
-
 
 local function getConfig()
     local file = io.open(".blocks/config.yaml","r")
@@ -103,16 +102,22 @@ local function export()
                 else
                     _ = _..filext
                 end
-                io.write('\nInsert path to export to (default path = /'.._:gsub('%..+$','')..'):\n> ')
-                local path = io.read()
-                if path == '' then path = _:gsub('%..+$','') end
-                for s,t in pairs(i) do
-                    os.execute('sleep 0.02')
-                    holdBlocks[t].build(_:match('%..+$'),path..'/')
-                    if not _:match('%..+') and not silent then
-                        print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._..'\027[0m')
-                    elseif not silent then
-                        print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._:match('%..+')..'\027[0m')
+                if not advanced_mode then
+                    io.write('\nInsert path to export to (default path = /'.._:gsub('%..+$','')..'):\n> ')
+                    local path = io.read()
+                    if path == '' then path = _:gsub('%..+$','') end
+                    for s,t in pairs(i) do
+                        os.execute('sleep 0.02')
+                        holdBlocks[t].build(_:match('%..+$'),path..'/')
+                        if not _:match('%..+') and not silent then
+                            print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._..'\027[0m')
+                        elseif not silent then
+                            print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._:match('%..+')..'\027[0m')
+                        end
+                    end
+                else
+                    for s,t in pairs(i) do
+                        print(tostring(s)..". "..t)
                     end
                 end
             end
@@ -135,7 +140,7 @@ available operations:
     -h --help:               Displays this message.
     -e --export:             Runs the 'Blocks Export Tool'.
     -se --silent_export:     Runs the 'Blocks Export Tool' and prevents the process lines from being printed
-    -a --adv:                Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
+    -a --advanced_export:    Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
     -u --update:             Updates Blocks to the latest version.
     -v --version:            Displays the current version.
     -R --uninstall:          Uninstall Blocks and remove all saved blocks.]])
@@ -194,6 +199,12 @@ available operations:
         files = table.concat(arg,",")
         silent = true
         cmdL = true
+        export()
+    elseif arg[1] == "-a" or arg[1] == "--advanced_export" then
+        table.remove(arg,[1])
+        files = table.concat(arg,",")
+        cmdL = true
+        advanced_mode = true
         export()
     elseif arg[1] == "-v" or arg[1] == "--version" then
         getConfig()
