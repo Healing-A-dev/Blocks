@@ -117,7 +117,12 @@ local function export()
                     end
                 else
                     for s,t in pairs(i) do
-                        print(tostring(s)..". "..t)
+                        local toBeExported = {}
+                        -- print(tostring(s)..". "..t)
+                        print("Enter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAlBlocks' to see all available blocks): ")
+                        for blocks in io.read():gmatch("[^%,]+") do
+                            toBeExported[#toBeExported+1] = blocks
+                        end
                     end
                 end
             end
