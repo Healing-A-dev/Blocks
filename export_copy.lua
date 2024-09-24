@@ -137,6 +137,7 @@ local function export()
                             local path = io.read()
                             if path == "" then path = _:gsub("%..+$","") end
                             holdBlocks[block].build(_:match("%..+$"),path.."/")
+                            print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..ext.."'\027[0m") 
                         end
                     end
                 end
