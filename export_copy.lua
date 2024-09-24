@@ -103,7 +103,7 @@ local function export()
                     _ = _..filext
                 end
                 if not advanced_mode then
-                    io.write('\nInsert path to export to (default path = /'.._:gsub('%..+$','')..'):\n> ')
+                    io.write('\nInsert path to export to (default path = '.._:gsub('%..+$','')..'):\n> ')
                     local path = io.read()
                     if path == '' then path = _:gsub('%..+$','') end
                     for s,t in pairs(i) do
@@ -116,12 +116,25 @@ local function export()
                         end
                     end
                 else
-                    for s,t in pairs(i) do
-                        local toBeExported = {}
-                        -- print(tostring(s)..". "..t)
-                        print("Enter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAlBlocks' to see all available blocks): ")
-                        for blocks in io.read():gmatch("[^%,]+") do
-                            toBeExported[#toBeExported+1] = blocks
+                    ::restart_process::
+                    print("Enter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAlBlocks' to see all available blocks):\n> ")
+                    local blocks = io.read()
+                    if blocks:gsub("%s+","") == "Blocks.ShowAllBlocks" then
+                        _G[blocks:gsub("%s+","")]()
+                        goto restart_process
+                    end
+                    for block in blocks:gmatch("[^%,]+") do
+                        local block = block:gsub("%s+","")
+                        if holdBlocks[block] ~= nil then
+                            io.write("Insert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'): ")
+                            local newEXT = io.read()
+                            if newEXT ~= "" then
+                                _ = _:gsub("%..+$",newEXT)
+                            end
+                            io.write("Insert path to export to (default path = ".._:gsub("%..+$","").."):\n> ")
+                            local path = io.read()
+                            if path == "" then path = _:gsub("%..+$","") end
+                            holdBlocks[block].build(_:match("%..+$"),path.."/")
                         end
                     end
                 end
