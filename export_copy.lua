@@ -117,10 +117,10 @@ local function export()
                     end
                 else
                     ::restart_process::
-                    print("Enter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAlBlocks' to see all available blocks):\n> ")
+                    print("Enter the name(s) or group(s) of blocks to export(enter 'Blocks.ShowAllBlocks' to see all available blocks):\n> ")
                     local blocks = io.read()
                     if blocks:gsub("%s+","") == "Blocks.ShowAllBlocks" then
-                        _G[blocks:gsub("%s+","")]()
+                        Blocks.ShowAllBlocks()
                         goto restart_process
                     end
                     for block in blocks:gmatch("[^%,]+") do
