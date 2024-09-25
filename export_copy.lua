@@ -103,7 +103,7 @@ local function export()
                     _ = _..filext
                 end
                 if not advanced_mode then
-                    io.write('\nInsert path to export to (default path = '.._:gsub('%..+$','')..'):\n> ')
+                    io.write('\nInsert path to export to (default path = /'.._:gsub('%..+$','')..'):\n> ')
                     local path = io.read()
                     if path == '' then path = _:gsub('%..+$','') end
                     for s,t in pairs(i) do
@@ -137,9 +137,9 @@ local function export()
                             else
                                 ext = _:match("[^/]+$")
                             end
-                            io.write("\nInsert path to export to (default path = "..ext:gsub("%..+$","").."): ")
+                            io.write("\nInsert path to export to (default path = /"..block:gsub("%..+$","").."): ")
                             local path = io.read()
-                            if path == "" then path = ext:gsub("%..+$","") end
+                            if path == "" then path = block:gsub("%..+$","") end
                             holdBlocks[block].build(ext:match("%..+$"),path.."/")
                             print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..block..ext:match("%..+$").."'\027[0m") 
                         end
