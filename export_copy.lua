@@ -181,6 +181,7 @@ available operations:
         for _,i in pairs(config) do
             print("Copied: '"..i:match("__%w+").."' configuration")
             file:write(i.."\n")
+            os.execute('sleep 0.2')
         end
         file:close()
         print("\027[1m**Update Completed**\027[0m")
