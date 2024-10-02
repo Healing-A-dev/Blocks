@@ -128,6 +128,25 @@ local function export()
                     for block in blocks:gmatch("[^%,]+") do
                         local block = block:gsub("%s+","")
                         local ext = ""
+                        if block:match("%/$") then
+                            for s,t in pairs(holdBlocks) do
+                                if s:match("^"..block) then
+                                     io.write("\nInsert file extension to assign to block '"..s.."' (default file extension = '".._:match("%..+$").."'): ")
+                                     local newEXT = io.read()
+                                     if newEXT ~= "" then
+                                         ext = s:match("[^%/]+$") or s
+                                         ext = ext:gsub("%/","")..newEXT
+                                     else
+                                         ext = _:match("[^/]+$")
+                                     end
+                                     io.write("\nInsert path to export to (default path = /"..s:gsub("%..+$","").."): ")
+                                     local path = io.read()
+                                     if path == "" then path = s:gsub("%..+$","") end
+                                     holdBlocks[s].build(ext:match("%..+$"),path.."/")
+                                     print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..s..ext:match("%..+$").."'\027[0m") 
+                                end
+                            end
+                        end    
                         if holdBlocks[block] ~= nil then
                             io.write("\nInsert file extension to assign to block '"..block.."' (default file extension = '".._:match("%..+$").."'): ")
                             local newEXT = io.read()
