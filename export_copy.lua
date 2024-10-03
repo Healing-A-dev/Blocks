@@ -142,6 +142,7 @@ local function export()
                                      io.write("\nInsert path to export to (default path = /"..s:gsub("%..+$","").."): ")
                                      local path = io.read()
                                      if path == "" then path = s:gsub("%..+$","") end
+                                     holdBlocks[s].__NAME__ = s:match("%/[^%/]+$"):gsub("%/","")
                                      holdBlocks[s].build(ext:match("%..+$"),path.."/")
                                      print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..s..ext:match("%..+$").."'\027[0m") 
                                 end
@@ -159,6 +160,7 @@ local function export()
                             io.write("\nInsert path to export to (default path = /"..block:gsub("%..+$","").."): ")
                             local path = io.read()
                             if path == "" then path = block:gsub("%..+$","") end
+                            if block:match("%/") then holdBlocks[block].__NAME__ = block:match("%/[^%/]+$"):gsub("%/","") end
                             holdBlocks[block].build(ext:match("%..+$"),path.."/")
                             print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..block..ext:match("%..+$").."'\027[0m") 
                         end
