@@ -145,10 +145,11 @@ local function export()
                                         path = s:gsub("%..+$","")
                                      else
                                         holdBlocks[s].__PATH__ = path
+                                        holdBlocks[s].__NAME__ = s:match("%/[^%/]+$"):gsub("%/","")
                                      end
-                                     holdBlocks[s].__NAME__ = s:match("%/[^%/]+$"):gsub("%/","")
+                                     holdBlocks[s].__NAME__ = holdBlocks[s].__NAME__ or s
                                      holdBlocks[s].build(ext:match("%..+$"),path.."/")
-                                     print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..s..ext:match("%..+$").."'\027[0m") 
+                                     print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..holdBlocks[s].__NAME__..ext:match("%..+$").."'\027[0m") 
                                 end
                             end
                         end    
