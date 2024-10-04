@@ -131,7 +131,7 @@ local function Build(file)
             Blocks[name].run = function()
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
-                    local splitStr = {}
+                    local splolitStr = {}
                     for s = 1, #i do
                         splitStr[#splitStr+1] = i:sub(s,s)
                     end
@@ -177,11 +177,11 @@ local function Build(file)
                         toRun[#toRun+1] = i
                     end
                 end
-                if name:find(".+/.+") and Blocks[name].__PATH__ == nil then
+                if name:find(".+/.+") and holdBlocks[name].__PATH__ == nil then
                     local name = name:gsub("%/[^%/]+$","")
                     os.execute("mkdir -p '"..path.."/"..name.."'")
-                elseif Blocks[name].__PATH__ ~= nil then
-                    name = Blocks[name].__NAME__
+                elseif holdBlocks[name].__PATH__ ~= nil then
+                    name = holdBlocks[name].__NAME__
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
                 local Header,Footer = "local "..name.." = {}","return "..name
