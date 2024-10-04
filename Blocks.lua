@@ -177,9 +177,11 @@ local function Build(file)
                         toRun[#toRun+1] = i
                     end
                 end
-                if name:find(".+/.+") then
+                if name:find(".+/.+") and Blocks[name].__PATH__ == nil then
                     local name = name:gsub("%/[^%/]+$","")
                     os.execute("mkdir -p '"..path.."/"..name.."'")
+                elseif Blocks[name].__PATH__ ~= nil then
+                    name = Blocks[name].__NAME__
                 end
                 local BlockFile = io.open(path..name..ext,"w+")
                 local Header,Footer = "local "..name.." = {}","return "..name
