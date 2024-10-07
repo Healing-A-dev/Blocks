@@ -204,10 +204,14 @@ available operations:
         os.execute('git clone '..update_path.." .Blocks.update && rm -r .blocks && cd .Blocks.update && make install")
         print("=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
-        for _,i in pairs(config) do
-            print("Copied: '"..i:match("__%w+").."' configuration")
-            file:write(i.."\n")
-            os.execute('sleep 0.2')
+        if #config > 0 then
+            for _,i in pairs(config) do
+                print("Copied: '"..i:match("__%w+").."' configuration")
+                file:write(i.."\n")
+                os.execute('sleep 0.2')
+            end
+        else
+            print("!Skipping. No configurations found!")
         end
         file:close()
         print("\027[1m**Update Completed**\027[0m")
