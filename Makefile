@@ -15,7 +15,7 @@ install:
 	@mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR)
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
-	@cd && rm -rf Blocks
+	@cd && rm -rf .blocks.update
 Linux build:
 	cd /
 	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
