@@ -77,7 +77,11 @@ local function partialBuild(name,file)
         end
     end
     
-    
+    Blocks[name].clear = function()
+        for _,i in ipairs(Blocks[name]) do
+            table.remove(Blocks[name],_)
+        end
+    end
     
 end
 
@@ -224,6 +228,12 @@ local function Build(file)
                     if type(i) == "function" then
                         print("    ".._.."\t\t"..tostring(i))
                     end
+                end
+            end
+
+            Blocks[name].clear = function()
+                for _,i in ipairs(Blocks[name]) do
+                    table.remove(Blocks[name],_)
                 end
             end
 
