@@ -15,8 +15,9 @@ install:
 	@mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR)
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
-	@if [[ -d Blocks ]] && ![[ -d .Blocks.update ]]; then cd rm -rf Blocks; fi 
-	@if [ -d .Blocks.update ]; then echo "BRUVA" cd rm -rf .Blocks.update; fi
+	@cd
+	@if [[ -d Blocks ]] && ![[ -d .Blocks.update ]]; then rm -rf Blocks; fi 
+	@if [ -d .Blocks.update ]; then rm -rf .Blocks.update; fi
 	@cd
 Linux build:
 	cd /
