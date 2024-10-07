@@ -10,18 +10,14 @@ test:
 	./srlua-102/srglue srlua-102/srlua example/buildTest/helloWorld.lua example/buildTest/helloWorld.out
 	./example/buildTest/helloWorld.out *
 install:
-	cd srlua-102 && make && cd ..
-	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks && chmod +x blocks
-	mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR)
-	cp blocks /home/$(USER)
-	sudo mv -f blocks $(INSTALL_PATH)
-	cd
-	if [ -f Blocks ]; then
-		rm -rf Blocks
-	else
-		rm -rf .Blocks.update
-	fi
-	cd
+	@cd srlua-102 && make && cd ..
+	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks && chmod +x blocks
+	@mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR)
+	@cp blocks /home/$(USER)
+	@sudo mv -f blocks $(INSTALL_PATH)
+	@if [[ -d Blocks ]] && ![[ -d .Blocks.update ]]; then cd rm -rf Blocks; fi 
+	@if [ -d .Blocks.update ]; then echo "BRUVA" cd rm -rf .Blocks.update; fi
+	@cd
 Linux build:
 	cd /
 	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
