@@ -16,8 +16,8 @@ install:
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
 	@cd
-	@if [[ -d Blocks ]] && ![[ -d .Blocks.update ]]; then rm -rf Blocks; fi 
-	@if [ -d .Blocks.update ]; then echo "ITS HEREEEE" rm -rf .Blocks.update; fi
+	@if [[ -d Blocks ]] && ![[ -d .Blocks.update ]]; then rm -rf Blocks; fi
+	@rm -rf $CONST_NAME.update
 	@cd
 Linux build:
 	cd /
