@@ -201,7 +201,7 @@ available operations:
         print("\027[1m**Starting Update**\027[0m")
         local config = updateConfig()
         print("=> Cloning git repository:")
-        os.execute('git clone '..update_path.." .Blocks.update && rm -r .blocks && cd .Blocks.update && make install")
+        os.execute('git clone '..update_path.." .blocks/.update && cd .blocks/.update && make install")
         print("=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         if #config > 0 then
