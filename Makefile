@@ -13,7 +13,7 @@ install:
 	@cd srlua-102 && make && cd ..
 	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks && chmod +x blocks
 	@cd
-	@if ! [ -d .blocks ]; then mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR); fi
+	@if [ ! -d .blocks ]; then mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR); fi
 	@if [ -d .blocks ]; then cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR); fi
 	@cd .blocks
 	@cp blocks /home/$(USER)
