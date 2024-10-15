@@ -203,7 +203,7 @@ available operations:
         print("\027[1m**Starting Update**\027[0m")
         local config = updateConfig()
         io.write("=> Cloning git repository\027[90m")
-        os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make Blocks_update")
+        os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make -s Blocks_update")
         print("\027[93m\t-> Completed\027[0m")
         print("\027[0m=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
