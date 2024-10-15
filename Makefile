@@ -17,6 +17,9 @@ Blocks_update:
 	@echo "WORKING ON IT"
 	@cd srlua-102 && make && cd ..
 	@cd .. && ./.update/srlua-102/srglue .update/srlua-102/srlua .update/export_copy.lua blocks && chmod +x blocks
+	@cp .update/Blocks.lua Blocks.lua && cp .update/config.yaml config.yaml
+	@cd && cp blocks /home/$(USER) && sudo mv -f blocks $(INSTALL_PATH)
+	@cd .blocks && rm -rf .update
 Linux build:
 	cd /
 	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
