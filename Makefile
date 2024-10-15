@@ -13,7 +13,6 @@ install:
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
 	@cd && rm -r Blocks
-	@cd
 update:
 	
 Linux build:
