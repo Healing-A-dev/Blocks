@@ -19,7 +19,7 @@ local function getConfig()
     local lines = file:lines()
     local currentLine = 1
     for line in lines do
-        if currentLine > 1 and #line:gsub("%s+","") > 0 then
+        if currentLine > 1 and #line:gsub("%s+","") > 0 and not line:match("^%#") then
             line = line:gsub("^%s+",""):gsub("%s+$","")
             local var = line:match("__%w+:"):gsub("%:","")
             local value = line:match(":.+"):gsub("^%s+",""):gsub("^:","")
