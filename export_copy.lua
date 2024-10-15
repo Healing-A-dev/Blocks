@@ -200,7 +200,6 @@ available operations:
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
-        print("\027[1m**Starting Update**\027[0m")
         local config = updateConfig()
         print("=> Cloning git repository\027[91m")
         os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make -s Blocks_update")
