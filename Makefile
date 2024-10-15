@@ -13,8 +13,8 @@ install:
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
 	@cd && rm -rf Blocks
-update:
-	
+Blocks_update:
+	@echo "WORKING ON IT"
 Linux build:
 	cd /
 	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
