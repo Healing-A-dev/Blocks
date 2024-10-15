@@ -2,10 +2,6 @@ CONST_NAME = .blocks
 INSTALL_PATH = /usr/local/bin
 MVDIR = /home/$(USER)/$(CONST_NAME)
 
-all: bin test
-
-bin:
-	@$(MAKE) `uname`
 install:
 	@cd srlua-102 && make && cd ..
 	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks && chmod +x blocks
@@ -19,7 +15,3 @@ Blocks_update:
 	@cd && cp $(CONST_NAME)/.update/Blocks.lua $(CONST_NAME)/Blocks.lua && cp $(CONST_NAME)/.update/config.yaml $(CONST_NAME)/config.yaml && cd && rm blocks
 	@cd .. && cp blocks /home/$(USER) && sudo mv -f blocks $(INSTALL_PATH)
 	@cd && cd $(CONST_NAME) && rm -rf .update blocks
-Linux build:
-	cd /
-	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
-	cp blocks-build $(INSTALL_PATH)
