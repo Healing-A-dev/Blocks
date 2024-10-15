@@ -213,6 +213,7 @@ available operations:
                 file:write(i.."\n")
                 os.execute('sleep 0.2')
             end
+            print("\027[93mCompleted\027[0m")
         else
             print("!Skipping. No configurations found!")
         end
