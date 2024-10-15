@@ -39,8 +39,8 @@ local function updateConfig()
     local toAppend = {}
     for line in lines do
         if not line:find("^__NAME") and not line:find("^__VERSION") and not line:find("^#") then
-            os.execute('sleep 0.02')
             toAppend[#toAppend+1] = line
+            os.execute('sleep 0.02')
         end
     end
     file:close()
