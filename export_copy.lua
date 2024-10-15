@@ -30,7 +30,7 @@ local function getConfig()
 end
 
 local function updateConfig()
-    print("=> Copying configuration file")
+    io.write("=> Copying configuration file")
     local file = io.open(".blocks/config.yaml","r")
     if file == nil then
         error("Missing .blocks/config.yaml")
@@ -39,10 +39,12 @@ local function updateConfig()
     local toAppend = {}
     for line in lines do
         if not line:find("^__NAME") and not line:find("^__VERSION") and not line:find("^#") then
+            os.execute('sleep 0.02')
             toAppend[#toAppend+1] = line
         end
     end
     file:close()
+    print("\027[93m\t-> Completed\027[0m")
     return toAppend
 end
 
@@ -200,8 +202,9 @@ available operations:
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         print("\027[1m**Starting Update**\027[0m")
         local config = updateConfig()
-        print("=> Cloning git repository:\027[90m")
-        os.execute('git clone '..update_path.." .blocks/.update && cd .blocks/.update && make Blocks_update")
+        io.write("=> Cloning git repository\027[90m")
+        os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make Blocks_update")
+        print("\027[93m\t-> Completed\027[0m")
         print("\027[0m=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         if #config > 0 then
