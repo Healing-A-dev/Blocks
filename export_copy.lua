@@ -200,9 +200,9 @@ available operations:
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         print("\027[1m**Starting Update**\027[0m")
         local config = updateConfig()
-        print("=> Cloning git repository:")
+        print("=> Cloning git repository:\027[90m")
         os.execute('git clone '..update_path.." .blocks/.update && cd .blocks/.update && make Blocks_update")
-        print("=> Updating new configuration file:")
+        print("\027[0m=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         if #config > 0 then
             for _,i in pairs(config) do
