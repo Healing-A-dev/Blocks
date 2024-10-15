@@ -44,7 +44,7 @@ local function updateConfig()
         end
     end
     file:close()
-    print("\027[93mCompleted\027[0m")
+    print("\027[93m\tCompleted\027[0m")
     return toAppend
 end
 
@@ -204,7 +204,7 @@ available operations:
         local config = updateConfig()
         print("=> Cloning git repository\027[91m")
         os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make -s Blocks_update")
-        print("\027[93mCompleted\027[0m")
+        print("\027[93m\tCompleted\027[0m")
         print("\027[0m=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         if #config > 0 then
