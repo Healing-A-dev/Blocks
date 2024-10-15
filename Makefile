@@ -15,6 +15,8 @@ install:
 	@cd && rm -rf Blocks
 Blocks_update:
 	@echo "WORKING ON IT"
+	@cd srlua-102 && make && cd ..
+	@cd .. && ./.update/srlua-102/srglue .update/srlua-102/srlua .update/export_copy.lua blocks && chmod +x blocks
 Linux build:
 	cd /
 	./srlua-102/srglue srlua-102/srlua export_copy.lua blocks-build
