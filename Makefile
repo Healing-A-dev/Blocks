@@ -12,14 +12,13 @@ test:
 install:
 	@cd srlua-102 && make && cd ..
 	@./srlua-102/srglue srlua-102/srlua export_copy.lua blocks && chmod +x blocks
-	@cd && rm -rf .blocks
-	@if [ -d .blocks ]; then echo "BOOOO"; cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR); fi
-	@if [ ! -d .blocks ]; then echo "HEHEHE"; mkdir $(MVDIR) && cp Blocks.lua $(MVDIR) && cp config.yaml $(MVDIR); fi
-	@cd .blocks
+	@cd && rename .blocks .blocks.update
+	@if [ -d .blocks ]; then echo "BOOOO"; cp .blocks.update/Blocks.lua $(MVDIR) && cp .blocks.update/config.yaml $(MVDIR); fi
+	@if [ ! -d .blocks ]; then echo "HEHEHE"; mkdir $(MVDIR) && cp .blocks.update/Blocks.lua $(MVDIR) && cp .blocks.update/config.yaml $(MVDIR); fi
+	@cd .blocks.update
 	@cp blocks /home/$(USER)
 	@sudo mv -f blocks $(INSTALL_PATH)
 	@cd
-	@if [[ -d Blocks ]] && ![[ -d .Blocks.update ]]; then rm -rf Blocks; fi
 	@rm -rf $CONST_NAME.update
 	@cd
 Linux build:
