@@ -30,7 +30,7 @@ local function getConfig()
 end
 
 local function updateConfig()
-    io.write("=> Copying configuration file")
+    print("=> Copying configuration file")
     local file = io.open(".blocks/config.yaml","r")
     if file == nil then
         error("Missing .blocks/config.yaml")
@@ -44,7 +44,7 @@ local function updateConfig()
         end
     end
     file:close()
-    print("\027[93m\t-> Completed\027[0m")
+    print("\027[93mCompleted\027[0m")
     return toAppend
 end
 
@@ -202,14 +202,14 @@ available operations:
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         print("\027[1m**Starting Update**\027[0m")
         local config = updateConfig()
-        print("=> Cloning git repository\027[90m")
+        print("=> Cloning git repository\027[91m")
         os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make -s Blocks_update")
-        print("\027[93m\t-> Completed\027[0m")
+        print("\027[93mCompleted\027[0m")
         print("\027[0m=> Updating new configuration file:")
         local file = io.open(".blocks/config.yaml","a")
         if #config > 0 then
             for _,i in pairs(config) do
-                print("Copied: '"..i:match("__%w+").."' configuration")
+                print("\027[90mCopied: '"..i:match("__%w+").."' configuration\027[0m")
                 file:write(i.."\n")
                 os.execute('sleep 0.2')
             end
