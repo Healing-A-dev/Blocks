@@ -129,8 +129,8 @@ local function Build(file)
     for name,i in pairs(Blocks) do
         if type(i) == "table" then
             local Name = {}
-            Name["name*"] = name
-            Name["name"] = name:match("%/%S+$")
+            Name["Name*"] = name
+            Name["Name"] = name:match("%/%S+$")
             if Name["name"] == nil then Name["name"] = Name["name*"] else Name["name"] = Name["name"]:gsub("%/","") end
             Blocks[name].run = function()
                 local toRun = {}
@@ -193,7 +193,7 @@ local function Build(file)
                     __HEADER = __HEADER:gsub("['\"]","")
                     if __HEADER:find(":.+$") then
                         local toReplace = __HEADER:match("%$%S+"):gsub("[%:%s+%$]","")
-                        Header = __HEADER:gsub(":%s+%$%w+",Name[toReplace:lower()]):gsub("%*$",""):gsub("^%s+","")
+                        Header = __HEADER:gsub(":%s+%$%w+",Name[toReplace]):gsub("%*$",""):gsub("^%s+","")
                     else
                         Header = __HEADER
                     end
@@ -202,7 +202,7 @@ local function Build(file)
                     __FOOTER = __FOOTER:gsub("['\"]","")
                     if __FOOTER:find(":.+$") then 
                         local toReplace = __FOOTER:match("%$%S+"):gsub("[%:%s+%$]","")
-                        Footer = __FOOTER:gsub(":%s+%$%w+",Name[toReplace:lower()]):gsub("%*$",""):gsub("^%s+","")
+                        Footer = __FOOTER:gsub(":%s+%$%w+",Name[toReplace]):gsub("%*$",""):gsub("^%s+","")
                     else
                         Footer = __FOOTER
                     end
