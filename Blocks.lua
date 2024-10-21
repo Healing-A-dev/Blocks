@@ -131,6 +131,7 @@ local function Build(file)
             local Name = {}
             Name["Name*"] = name
             Name["Name"] = name:match("%/%S+$"):gsub("%/","")
+            Name["Date"] = "Exported: "..os.date("%B %d, %Y | %I:%M %p")
             if Name["name"] == nil then Name["name"] = Name["name*"] else Name["name"] = Name["name"]:gsub("%/","") end
             Blocks[name].run = function()
                 local toRun = {}
