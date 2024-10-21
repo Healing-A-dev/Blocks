@@ -130,7 +130,7 @@ local function Build(file)
         if type(i) == "table" then
             local Name = {}
             Name["Name*"] = name
-            Name["Name"] = name:match("%/%S+$")
+            Name["Name"] = name:match("%/%S+$"):gsub("%/","")
             if Name["name"] == nil then Name["name"] = Name["name*"] else Name["name"] = Name["name"]:gsub("%/","") end
             Blocks[name].run = function()
                 local toRun = {}
