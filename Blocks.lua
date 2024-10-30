@@ -130,9 +130,13 @@ local function Build(file)
         if type(i) == "table" then
             local Name = {}
             Name["Name*"] = name
-            Name["Name"] = name:match("%/%S+$"):gsub("%/","")
+            if name:match("%/%S+$") then
+                Name["Name"] = name:match("%/%S+$"):gsub("%/","")
+            else
+                Name["Name"] = name
+            end
             Name["Date"] = "Exported: "..os.date("%B %d, %Y | %I:%M %p")
-            if Name["name"] == nil then Name["name"] = Name["name*"] else Name["name"] = Name["name"]:gsub("%/","") end
+            if Name["Name"] == nil then Name["Name"] = Name["Name*"] else Name["Name"] = Name["Name"]:gsub("%/","") end
             Blocks[name].run = function()
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
