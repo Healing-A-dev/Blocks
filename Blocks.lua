@@ -135,7 +135,7 @@ local function Build(file)
             else
                 Name["Name"] = name
             end
-            Name["Date"] = "Exported: "..os.date("%B %d, %Y | %I:%M %p")
+            Name["Date"] = tostring(os.date("%B %d, %Y | %I:%M %p"))
             if Name["Name"] == nil then Name["Name"] = Name["Name*"] else Name["Name"] = Name["Name"]:gsub("%/","") end
             Blocks[name].run = function()
                 local toRun = {}
