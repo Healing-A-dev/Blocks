@@ -11,6 +11,7 @@ local filext = ""
 local files
 holdBlocks = {} -- Will hold the Blocks instead of the Blocks table
 
+--[[Configuration file handling functions]]--
 local function getConfig()
     local file = io.open(".blocks/config.yaml","r")
     if file == nil then
@@ -46,6 +47,46 @@ local function updateConfig()
     file:close()
     print("\027[93mCompleted\027[0m")
     return toAppend
+end
+
+
+--[[Cache handling functions]]--
+local function updateCache()
+
+end
+
+local function cache(blockName)
+    local cachefile = "cache/cachefiles.bfk"
+    --[[Cache Reader]]--
+    local function readCache()
+        local cachedfiles = {}
+        os.execute('cd && cd .blocks')
+        if io.open(cachefile,"r") == nil then
+            os.execute("mkdir cache && touch cache/cachefiles.bkf")
+            os.execute("echo 'Blocks:' >> "..cachefile)
+        end
+        local file = io.open(cachefile,"r")
+        local lines = file:lines()
+        for line in lines do
+            local name = line:match("%s%s%s%s%-%s%w+%:")
+            if name ~= nil then
+                cachedfiles[name] = true
+            end
+        end
+        file:close()
+        return cachedfiles
+    end
+
+    --[[Loading/Creating Cache]]--
+    local cache = readCache()
+    function cache.search(self,block)
+        return self[block] or false
+    end
+
+    local file = io.open(cachefile,"a")
+    if not cache:search(blockName) then
+        file:write("\n\n    - "..blockName..":")
+    end
 end
 
 local function export()
@@ -151,7 +192,10 @@ local function export()
                                      end
                                      holdBlocks[s].__NAME__ = holdBlocks[s].__NAME__ or s
                                      holdBlocks[s].build(ext:match("%..+$"),path.."/")
-                                     print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..holdBlocks[s].__NAME__..ext:match("%..+$").."'\027[0m") 
+                                    if __CACHE then
+                                        holdBlocks[block].build(ext:match("%..+$"),"cache/")
+                                    end
+                                    print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..holdBlocks[s].__NAME__..ext:match("%..+$").."'\027[0m") 
                                 end
                             end
                         end    
@@ -169,6 +213,9 @@ local function export()
                             if path == "" then path = block:gsub("%..+$","") end
                             if block:match("%/") then holdBlocks[block].__NAME__ = block:match("%/[^%/]+$"):gsub("%/","") end
                             holdBlocks[block].build(ext:match("%..+$"),path.."/")
+                            if __CACHE then
+                                holdBlocks[block].build(ext:match("%..+$"),"cache/")
+                            end
                             print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..block..ext:match("%..+$").."'\027[0m") 
                         end
                     end
