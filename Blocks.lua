@@ -217,22 +217,64 @@ local function Build(file)
                 return path..name
             end
 
-            Blocks[name].contents = function()
-                print("Block: "..name.."\n")
-                for _,i in ipairs(Blocks[name]) do
-                    print("    "..i)
-                end
-                print("____________________\nExtensions:")
-                for _,i in pairs(Blocks[name]) do
-                    if type(i) == "table" then
-                        print("    ".._..":\t\t"..tostring(i))
+            Blocks[name].contents = function(argument)
+                local argument = argument or "*a"
+                local blockLines = {}
+                if argument == "*a" then
+                    print("Block: "..name.."\n")
+                    for _,i in ipairs(Blocks[name]) do
+                        print("    "..i)
+                        blockLines[#blockLines+1] = i
                     end
-                end
-                print("____________________\nFunctions:")
-                for _,i in pairs(Blocks[name]) do
-                    if type(i) == "function" then
-                        print("    ".._.."\t\t"..tostring(i))
+                    print("____________________\nExtensions:")
+                    for _,i in pairs(Blocks[name]) do
+                        if type(i) == "table" then
+                            print("    ".._..":\t\t"..tostring(i))
+                        end
                     end
+                    print("____________________\nFunctions:")
+                    for _,i in pairs(Blocks[name]) do
+                        if type(i) == "function" then
+                            print("    ".._.."\t\t"..tostring(i))
+                        end
+                    end
+                    return blockLines
+                elseif argument == "*l" then
+                    for _,i in ipairs(Blocks[name]) do
+                        blockLines[#blockLines+1] = i
+                    end
+                    return blockLines
+                elseif argument == "*e" then
+                    for _,i in pairs(Blocks[name]) do
+                        if type(i) == "table" then
+                            print("    ".._..":\t\t"..tostring(i))
+                        end
+                    end
+                elseif argument == "*f" then
+                    for _,i in pairs(Blocks[name]) do
+                        if type(i) == "function" then
+                            print("    ".._.."\t\t"..tostring(i))
+                        end
+                    end
+                else
+                    print("Block: "..name.."\n")
+                    for _,i in ipairs(Blocks[name]) do
+                        print("    "..i)
+                        blockLines[#blockLines+1] = i
+                    end
+                    print("____________________\nExtensions:")
+                    for _,i in pairs(Blocks[name]) do
+                        if type(i) == "table" then
+                            print("    ".._..":\t\t"..tostring(i))
+                        end
+                    end
+                    print("____________________\nFunctions:")
+                    for _,i in pairs(Blocks[name]) do
+                        if type(i) == "function" then
+                            print("    ".._.."\t\t"..tostring(i))
+                        end
+                    end
+                    return blockLines
                 end
             end
 
