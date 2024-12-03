@@ -70,7 +70,7 @@ local function readCache()
         end
         ns = {}
         for s = 1, #sv do
-            ns[#ns+1] = string.char(sv:sub(s,s):byte()-dv)
+            ns[#ns+1] = string.char(sv:sub(s,s):byte() - math.floor(dv/#__NAME))
         end
         return table.concat(ns)
     end
@@ -109,7 +109,7 @@ local function cache(blockName)
         end
         ns = {}
         for s = 1, #sv do
-            ns = string.char(sv:sub(s,s):byte() + ev)
+            ns = string.char(sv:sub(s,s):byte() + math.floor(ev/#__NAME))
         end
         return table.concat(ns)
     end
