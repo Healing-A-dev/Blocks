@@ -122,7 +122,8 @@ local function cache(blockName)
 
     local file = io.open(cachefile,"a")
     if not cache:search(blockName) then
-        print(blockName,#blockName)
+        print(holdBlocks)
+        print(holdBlocks[blockName])
         local lineStore = holdBlocks[blockName].contents("*l")
         file:write("\n\n    - "..es(blockName)..":")
         for _,i in pairs(lineStore) do
