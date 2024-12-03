@@ -200,6 +200,9 @@ local function export()
                         elseif not silent then
                             print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._:match('%..+')..'\027[0m')
                         end
+                        if __CACHE then
+                            cache(t)
+                        end
                     end
                 else
                     ::restart_process::
