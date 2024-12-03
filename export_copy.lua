@@ -66,11 +66,11 @@ local function readCache()
             ns[#ns+1] = __NAME:sub(s,s):byte()
         end
         for ipit,vaipit in pairs(ns) do
-            dv = (dv + vaipit) * (ns[ipit]-(ns[ipit]-1))
+            dv = (dv + vaipit)
         end
         ns = {}
         for s = 1, #sv do
-            ns[#ns+1] = string.char(sv:sub(s,s):byte() - dv*0.5)
+            ns[#ns+1] = string.char(sv:sub(s,s):byte() - dv/#__NAME)
         end
         return table.concat(ns)
     end
@@ -104,12 +104,11 @@ local function cache(blockName)
             ns[#ns+1] = __NAME:sub(s,s):byte()
         end
         for ipit,vaipit in pairs(ns) do
-            ev = (ev + vaipit) * (ns[ipit]-(ns[ipit]-1))
+            ev = (ev + vaipit)
         end
         ns = {}
         for s = 1, #sv do
-            print(string.char((sv:sub(s,s):byte() + ev*0.5)*0.5))
-            ns[#ns+1] = string.char(sv:sub(s,s):byte() + ev*0.5)
+            ns[#ns+1] = string.char(sv:sub(s,s):byte() + ev/#__NAME)
         end
         return table.concat(ns)
     end
