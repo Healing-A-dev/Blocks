@@ -52,32 +52,69 @@ end
 
 --[[Cache handling functions]]--
 local function updateCache()
-
+    
 end
 
-local function cache(blockName)
-    local cachefile = "cache/cachefiles.bfk"
-    --[[Cache Reader]]--
-    local function readCache()
-        local cachedfiles = {}
-        os.execute('cd && cd .blocks')
-        if io.open(cachefile,"r") == nil then
-            os.execute("mkdir cache && touch cache/cachefiles.bkf")
-            os.execute("echo 'Blocks:' >> "..cachefile)
+--Cache Reader
+local function readCache()
+    local cachefile = ".blocks/cache/cachefiles.bfk"
+    
+    local function ds(sv)
+        local ns = {}
+        local dv = 0
+        for s = 1, #__NAME do
+            ns[#ns+1] = __NAME:sub(s,s):byte()
         end
-        local file = io.open(cachefile,"r")
-        local lines = file:lines()
-        for line in lines do
-            local name = line:match("%s%s%s%s%-%s%w+%:")
-            if name ~= nil then
-                cachedfiles[name] = true
-            end
+        for ipit,vaipit in pairs(ns) do
+            dv = (dv + vaipit) * (ns[ipit]-(ns[ipit]-1))
         end
-        file:close()
-        return cachedfiles
+        ns = {}
+        for s = 1, #sv do
+            ns[#ns+1] = string.char(sv:sub(s,s):byte()-dv)
+        end
+        return table.concat(ns)
     end
 
-    --[[Loading/Creating Cache]]--
+    --Reading Cache
+    local cachedfiles = {}
+    if io.open(cachefile,"r") == nil then
+        os.execute("cd .blocks && mkdir cache && touch cache/cachefiles.bfk && cd")
+        os.execute("echo 'Blocks:' >> "..cachefile)
+    end
+    local file = io.open(cachefile,"r")
+    local lines = file:lines()
+    for line in lines do
+        local name = line:match("%s%s%s%s%-%s.+%:")
+        if name ~= nil then
+            name = name:gsub("^%s+%-%s",""):gsub("%:$","")
+            cachedfiles[ds(name)] = true
+        end
+    end
+    file:close()
+    return cachedfiles
+end
+
+--Cache Updater
+local function cache(blockName)
+    local cachefile = ".blocks/cache/cachefiles.bfk"
+
+    local function es(sv)
+        local ns = {}
+        local ev = 0
+        for s = 1, #__NAME do
+            ns[#ns+1] = __NAME:sub(s,s):byte()
+        end
+        for ipit,vaipit in pairs(ns) do
+            ev = (ev + vaipit) * (ns[ipit]-(ns[ipit]-1))
+        end
+        ns = {}
+        for s = 1, #sv do
+            ns = string.char(sv:sub(s,s):byte() + ev)
+        end
+        return table.concat(ns)
+    end
+
+    --Loading/Creating Cache
     local cache = readCache()
     function cache.search(self,block)
         return self[block] or false
@@ -85,10 +122,16 @@ local function cache(blockName)
 
     local file = io.open(cachefile,"a")
     if not cache:search(blockName) then
-        file:write("\n\n    - "..blockName..":")
+        local lineStore = holdBlocks[blockName].contents("*l")
+        file:write("\n\n    - "..es(blockName)..":")
+        for _,i in pairs(lineStore) do
+            file:write("        "..es(i))
+        end
     end
+    file:close()
 end
 
+--[[Block Export Function]]--
 local function export()
     getConfig()
     if arg[1] == nil then
@@ -193,6 +236,7 @@ local function export()
                                      holdBlocks[s].__NAME__ = holdBlocks[s].__NAME__ or s
                                      holdBlocks[s].build(ext:match("%..+$"),path.."/")
                                     if __CACHE then
+                                        cache(block)
                                         holdBlocks[block].build(ext:match("%..+$"),"cache/")
                                     end
                                     print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..holdBlocks[s].__NAME__..ext:match("%..+$").."'\027[0m") 
@@ -214,6 +258,7 @@ local function export()
                             if block:match("%/") then holdBlocks[block].__NAME__ = block:match("%/[^%/]+$"):gsub("%/","") end
                             holdBlocks[block].build(ext:match("%..+$"),path.."/")
                             if __CACHE then
+                                cache(block)
                                 holdBlocks[block].build(ext:match("%..+$"),"cache/")
                             end
                             print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..block..ext:match("%..+$").."'\027[0m") 
