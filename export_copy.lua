@@ -237,7 +237,6 @@ local function export()
                                      holdBlocks[s].build(ext:match("%..+$"),path.."/")
                                     if __CACHE then
                                         cache(block)
-                                        holdBlocks[block].build(ext:match("%..+$"),"cache/")
                                     end
                                     print("\027[93m\tSuccessfully exported block '"..s.."' to '"..path.."/"..holdBlocks[s].__NAME__..ext:match("%..+$").."'\027[0m") 
                                 end
@@ -259,7 +258,6 @@ local function export()
                             holdBlocks[block].build(ext:match("%..+$"),path.."/")
                             if __CACHE then
                                 cache(block)
-                                holdBlocks[block].build(ext:match("%..+$"),"cache/")
                             end
                             print("\027[93m\tSuccessfully exported block '"..block.."' to '"..path.."/"..block..ext:match("%..+$").."'\027[0m") 
                         end
