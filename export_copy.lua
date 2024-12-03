@@ -79,7 +79,6 @@ local function readCache()
     local cachedfiles = {}
     if io.open(cachefile,"r") == nil then
         os.execute("cd .blocks && mkdir cache && touch cache/cachefiles.bfk && cd")
-        os.execute("echo 'Blocks:' >> "..cachefile)
     end
     local file = io.open(cachefile,"r")
     local lines = file:lines()
