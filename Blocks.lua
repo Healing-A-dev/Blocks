@@ -218,6 +218,7 @@ local function Build(file)
             end
 
             Blocks[name].contents = function(argument)
+                local Blocks = holdBlocks
                 local argument = argument or "*a"
                 local blockLines = {}
                 if argument == "*a" then
