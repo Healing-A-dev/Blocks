@@ -122,7 +122,7 @@ local function cache(blockName)
 
     local file = io.open(cachefile,"a")
     if not cache:search(blockName) then
-        print(blockName)
+        print(blockName,#blockName)
         local lineStore = holdBlocks[blockName].contents("*l")
         file:write("\n\n    - "..es(blockName)..":")
         for _,i in pairs(lineStore) do
@@ -294,7 +294,7 @@ available operations:
     elseif arg[1] == "--update" or arg[1] == "-u" then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
         local config = updateConfig()
-        print("=> Cloning git repository\027[91m")
+        print("=> Cloning git repository")
         os.execute('git clone --quiet '..update_path.." .blocks/.update && cd .blocks/.update && make -s Blocks_update")
         print("\027[93mCompleted\027[0m")
         print("\027[0m=> Updating new configuration file:")
