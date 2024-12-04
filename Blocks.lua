@@ -26,7 +26,7 @@ local function partialBuild(name,file)
             File:write(i.."\n")
         end
         File:close()
-        if Blocks[name].runFile:find("%.blockfile") then
+        if Blocks[name].runFile:find("%.bcache") then
             os.remove(Blocks[name].runFile)
         end
     end
