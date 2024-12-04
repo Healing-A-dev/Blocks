@@ -104,11 +104,11 @@ local function cache(blockName)
             ns[#ns+1] = __NAME:sub(s,s):byte()
         end
         for ipit,vaipit in pairs(ns) do
-            ev = (ev + vaipit)
+            ev = (ev + vaipit) * (ns[ipit] - (ns[ipit]-1))
         end
+        es = es/#__NAME
         ns = {}
         for s = 1, #sv do
-            print((sv:sub(s,s):byte() >> 1) + ev)
             ns[#ns+1] = string.char((sv:sub(s,s):byte() >> 1) + ev)
         end
         return table.concat(ns)
