@@ -100,6 +100,7 @@ local function cache(blockName)
     local function es(sv)
         local ns = {}
         local ev = 0
+        local __NAME = __NAME:gsub("[%s+'\"]","")
         for s = 1, #__NAME do
             ns[#ns+1] = __NAME:sub(s,s):byte()
         end
