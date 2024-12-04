@@ -57,7 +57,7 @@ end
 
 --Cache Reader
 local function readCache()
-    local cachefile = ".blocks/cache/cachefiles.bfk"
+    local cachefile = ".blocks/cache/cachefiles.blockfile"
     
     local function ds(sv)
         local ns = {}
@@ -80,7 +80,7 @@ local function readCache()
     --Reading Cache
     local cachedfiles = {}
     if io.open(cachefile,"r") == nil then
-        os.execute("cd .blocks && mkdir cache && touch cache/cachefiles.bfk && cd")
+        os.execute("cd .blocks && mkdir cache && touch cache/cachefiles.blockfile && cd")
     end
     local file = io.open(cachefile,"r")
     local lines = file:lines()
@@ -97,7 +97,7 @@ end
 
 --Cache Updater
 local function cache(blockName)
-    local cachefile = ".blocks/cache/cachefiles.bfk"
+    local cachefile = ".blocks/cache/cachefiles.blockfile"
 
     local function es(sv)
         local ns = {}
