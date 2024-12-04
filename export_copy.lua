@@ -110,7 +110,7 @@ local function cache(blockName)
         ev = ev/202
         ns = {}
         for s = 1, #sv do
-            print(string.char((sv:sub(s,s):byte() >> 1) + ev))
+            --print(string.char((sv:sub(s,s):byte() >> 1) + ev))
             ns[#ns+1] = string.char((sv:sub(s,s):byte() >> 1) + ev)
         end
         return table.concat(ns)
