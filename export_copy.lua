@@ -108,9 +108,9 @@ local function cache(blockName)
             ev = (ev + vaipit) * (ns[ipit] - (ns[ipit]-1))
         end
         ev = ev/202
-        print(ev, #__NAME, __NAME)
         ns = {}
         for s = 1, #sv do
+            print(string.char((sv:sub(s,s):byte() >> 1) + ev))
             ns[#ns+1] = string.char((sv:sub(s,s):byte() >> 1) + ev)
         end
         return table.concat(ns)
@@ -125,9 +125,9 @@ local function cache(blockName)
     local file = io.open(cachefile,"a")
     if not cache:search(blockName) then
         local lineStore = holdBlocks[blockName].contents("*l")
-        file:write("\n    - "..es(blockName)..":\n")
+        file:write("\n- "..es(blockName)..":\n")
         for _,i in pairs(lineStore) do
-            file:write("        "..es(i).."\n")
+            file:write("    "..es(i).."\n")
         end
     end
     file:close()
