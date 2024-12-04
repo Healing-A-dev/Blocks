@@ -107,6 +107,7 @@ local function cache(blockName)
             ev = (ev + vaipit) * (ns[ipit] - (ns[ipit]-1))
         end
         ev = ev/101
+        print(ev)
         ns = {}
         for s = 1, #sv do
             ns[#ns+1] = string.char((sv:sub(s,s):byte() >> 1) + ev*4)
