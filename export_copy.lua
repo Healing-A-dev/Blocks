@@ -62,12 +62,14 @@ local function readCache()
     local function ds(sv)
         local ns = {}
         local dv = 0
+        local __NAME = __NAME:gsub("[%s+'\"]","")
         for s = 1, #__NAME do
             ns[#ns+1] = __NAME:sub(s,s):byte()
         end
         for ipit,vaipit in pairs(ns) do
-            dv = (dv + vaipit)
+            dv = (dv + vaipit) * (ns[ipit]-(ns[ipit]-1))
         end
+        dv =  dv/202
         ns = {}
         for s = 1, #sv do
             ns[#ns+1] = string.char((sv:sub(s,s):byte() << 1) - dv)
