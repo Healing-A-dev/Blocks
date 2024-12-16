@@ -1,7 +1,7 @@
 dofile('./.blocks/Blocks.lua')
 --[[
 CONST_NAME = .blocks
-INSTALL_PATH = /usr/bin
+INSTALL_PATH = /usr/local/bin
 MVDIR = /home/$(USER)/$(CONST_NAME)
 ]]
 local Blocks = Blocks
@@ -321,7 +321,7 @@ available operations:
         local answer = io.read()
         if answer:lower() == "y" then
             local processes = {
-                "cd /usr/bin",
+                "cd /usr/local/bin",
                 "rm -f blocks",
                 "cd",
                 "rm -rf .blocks",
