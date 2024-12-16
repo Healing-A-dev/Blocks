@@ -1,5 +1,5 @@
 CONST_NAME = .blocks
-INSTALL_PATH = /usr/local/bin
+INSTALL_PATH = /usr/bin
 MVDIR = /home/$(USER)/$(CONST_NAME)
 
 install:
