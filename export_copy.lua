@@ -163,7 +163,7 @@ local function export()
                 end
             end
             for _,i in pairs(toExport) do
-                os.execute('sleep 0.02')
+                --os.execute('sleep 0.02')
                 if not silent then
                     print('\t\027[1m\027[93mGenerated block \''.._..'\'.\027[0m')
                 end
