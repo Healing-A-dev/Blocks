@@ -197,7 +197,7 @@ local function export()
                     local path = io.read()
                     if path == '' then path = _:gsub('%..+$','') end
                     for s,t in pairs(i) do
-                        os.execute('sleep 0.02')
+                        --os.execute('sleep 0.02')
                         holdBlocks[t].build(_:match('%..+$'),path..'/')
                         if not _:match('%..+') and not silent then
                             print('\027[93m\tSuccessfully exported block \''..t..'\' to '..path..'/'..t.._..'\027[0m')
