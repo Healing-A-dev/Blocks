@@ -192,7 +192,7 @@ local function loadCache(block_file_name)
         file:close()
         
         --Building Blocks
-        Blocks.BuildFromFile(cachefile,"",cmdL)
+        Blocks.BuildFromFile(cachefile,"",true)
 
         --Resetting File
         file = io.open(cachefile, 'w+')
