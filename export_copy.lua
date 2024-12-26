@@ -436,7 +436,7 @@ available operations:
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
         loadCache(arg[2])
-        Blocks[arg[2]].run(arg[3])
+        Blocks[arg[2]].contents()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
