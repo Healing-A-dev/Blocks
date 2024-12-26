@@ -130,8 +130,9 @@ local function cache(blockName)
         local lineStore = holdBlocks[blockName].contents("*l")
         file:write("\n- "..es(blockName)..":\n")
         for _,i in pairs(lineStore) do
-            file:write("    "..es(i).."\n"..es("endBlock").."\n")
+            file:write("    "..es(i).."\n")
         end
+        file:write(es("endBlock").."\n")
     end
     file:close()
 end
