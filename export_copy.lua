@@ -58,7 +58,8 @@ end
 --Cache Reader
 local function readCache()
     local cachefile = ".blocks/cache/cachefiles.bfcache"
-    
+
+    --ds
     local function ds(sv)
         local ns = {}
         local dv = 0
@@ -99,6 +100,7 @@ end
 local function cache(blockName)
     local cachefile = ".blocks/cache/cachefiles.bfcache"
 
+    --es
     local function es(sv)
         local ns = {}
         local ev = 0
@@ -132,6 +134,48 @@ local function cache(blockName)
         end
     end
     file:close()
+end
+
+--Cache Loader
+local function loadCache(block_file_name)
+    local cachefile = ".blocks/cache/cachefiles.bfcache"
+    local file_store = {ds = {}, es = {}}
+
+    --ds
+    local function ds(sv)
+        local ns = {}
+        local dv = 0
+        local __NAME = __NAME:gsub("[%s+'\"]","")
+        for s = 1, #__NAME do
+            ns[#ns+1] = __NAME:sub(s,s):byte()
+        end
+        for ipit,vaipit in pairs(ns) do
+            dv = (dv + vaipit) * (ns[ipit]-(ns[ipit]-1))
+        end
+        dv =  dv/202
+        ns = {}
+        for s = 1, #sv do
+            ns[#ns+1] = string.char((sv:sub(s,s):byte()+dv))
+        end
+        return ns
+    end
+    
+    local cache = readCache()
+    if cache[block_file_name] then
+        local file = io.open(cachefile, 'r')
+        local lines = file:lines()
+        for line in lines do
+            file_store.es[#file_store.es+1] = line
+            file_store.ds[#file_store.ds+1] = ds(line)
+        end
+        file:close()
+        file = io.open(cachefile, 'w+')
+        for _,i in pairs(file_store.ds) do
+            file:write(i)
+        end
+        file:close()
+        Blocks.BuildFromFile(cachefile,"",cmdL)
+    end
 end
 
 --[[Block Export Function]]--
