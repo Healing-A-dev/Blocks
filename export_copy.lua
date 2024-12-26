@@ -437,6 +437,7 @@ available operations:
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
         loadCache(arg[2])
+        Blocks.ShowAllBlocks()
         Blocks[block_name].run(arg[3])
     else
         print("blocks: command '"..arg[1].."' was not found")
