@@ -436,10 +436,6 @@ available operations:
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
         loadCache(arg[2])
-        --[[Debugging:
-            print(arg[2],#arg[2])
-            Blocks.ShowAllBlocks()
-        --Debugging]]
         for _,i in pairs(Blocks) do
             if type(i) == 'table' then
                 holdBlocks[_] = i
