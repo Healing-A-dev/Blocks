@@ -159,6 +159,7 @@ local function loadCache(block_file_name)
         end
         return ns
     end
+    print(table.concat(ns))
     if block_file_name == nil then
         print("Blocks: No block specified to run\n\027[91mTerminating Process\027[0m")
         os.exit()
@@ -176,16 +177,23 @@ local function loadCache(block_file_name)
             file_store.ds[#file_store.ds+1] = ds(line)
         end
         file:close()
+
+        --Editing File
         file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.ds) do
             file:write(i)
         end
         file:close()
+        
+        --Building Blocks
         Blocks.BuildFromFile(cachefile,"",cmdL)
+
+        --Resetting File
         file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.es) do
             file:write(i)
         end
+        file:close()
     else
         print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
         os.exit()
