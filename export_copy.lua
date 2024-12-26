@@ -446,7 +446,7 @@ available operations:
                 Blocks[_] = nil
             end
         end
-        holdBlocks[arg[2]].contents()
+        holdBlocks[arg[2]].run(arg[3])
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
