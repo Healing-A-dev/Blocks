@@ -163,6 +163,9 @@ local function loadCache(block_file_name)
     local cache = readCache()
     if cache[block_file_name] then
         local file = io.open(cachefile, 'r')
+        if file == nil then
+            print("Blocks: No cache file '.blocks/cache/cachefiles.bfcache' was found\n\027[91mTerminating Process\027[0m") 
+        end
         local lines = file:lines()
         for line in lines do
             file_store.es[#file_store.es+1] = line
@@ -323,24 +326,27 @@ local function export()
         if not silent then
             print('Process Ended. Nothing to export.')
         end
-    end
-    
+    end 
 end
 
-
-
+local function runBlock(block_name)
+    loadCache()
+    Blocks[block_name].run()
+end
+    
 if #arg > 0 then
     if arg[1] == "-h" or arg[1] == "--help" then
         print([[
 usage: blocks <operation> [...]
 available operations:
-    -h --help:               Displays this message.
-    -e --export:             Runs the 'Blocks Export Tool'.
-    -se --silent_export:     Runs the 'Blocks Export Tool' and prevents the process lines from being printed
-    -a --advanced_export:    Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
-    -u --update:             Updates Blocks to the latest version.
-    -v --version:            Displays the current version.
-    -R --uninstall:          Uninstall Blocks and remove all saved blocks.]])
+    -h --help:                                              Displays this message.
+    -e --export <File>:                                     Runs the 'Blocks Export Tool'.
+    -se --silent_export <File>:                             Runs the 'Blocks Export Tool' and prevents the process lines from being printed
+    -a --advanced_export <File>:                            Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
+    -u --update:                                            Updates Blocks to the latest version.
+    -v --version:                                           Displays the current version.
+    -r --run_block <Block_Name> <Language_To_Use>:          Builds the specified block from cache (if available) and runs the block in the specified programming language.
+    -R --uninstall:                                         Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
         local update_path = "https://github.com/Healing-A-Dev/Blocks"
