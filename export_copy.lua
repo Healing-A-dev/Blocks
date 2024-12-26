@@ -159,7 +159,6 @@ local function loadCache(block_file_name)
         end
         return ns
     end
-    print(table.concat(ns))
     if block_file_name == nil then
         print("Blocks: No block specified to run\n\027[91mTerminating Process\027[0m")
         os.exit()
@@ -175,6 +174,7 @@ local function loadCache(block_file_name)
         for line in lines do
             file_store.es[#file_store.es+1] = line
             file_store.ds[#file_store.ds+1] = ds(line)
+            print(table.concat(ns))
         end
         file:close()
 
