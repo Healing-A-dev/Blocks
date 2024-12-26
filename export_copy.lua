@@ -328,11 +328,6 @@ local function export()
         end
     end 
 end
-
-local function runBlock(block_name)
-    loadCache()
-    Blocks[block_name].run()
-end
     
 if #arg > 0 then
     if arg[1] == "-h" or arg[1] == "--help" then
@@ -345,7 +340,7 @@ available operations:
     -a --advanced_export <File>:                            Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
     -u --update:                                            Updates Blocks to the latest version.
     -v --version:                                           Displays the current version.
-    -r --run_block <Block_Name> <Language_To_Use>:          Builds the specified block from cache (if available) and runs the block in the specified programming language.
+    -r --run_block <Block_Name> <Commands_To_Run>:          Builds the specified block from cache (if available) and runs the block in the specified commands to run (ie. 'lua <Block_Name>, 'python3 <File_Name>, etc).
     -R --uninstall:                                         Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
@@ -418,6 +413,9 @@ available operations:
     elseif arg[1] == "-v" or arg[1] == "--version" then
         getConfig()
         print("Version: \027[95m"..__VERSION.."\027[0m")
+    elseif arg[1] == "-r" or arg[1] == "--run_block" then
+        loadCache()
+        Blocks[block_name].run(run_commands)
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
