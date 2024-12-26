@@ -85,7 +85,7 @@ local function readCache()
     local file = io.open(cachefile,"r")
     local lines = file:lines()
     for line in lines do
-        local name = line:match("%s%s%s%s%-%s.+%:")
+        local name = line:match("[^%.]+")
         if name ~= nil then
             name = name:gsub("^%s+%-%s",""):gsub("%:$","")
             cachedfiles[ds(name)] = true
@@ -112,10 +112,9 @@ local function cache(blockName)
         ev = ev/202
         ns = {}
         for s = 1, #sv do
-            --print(string.char((sv:sub(s,s):byte() >> 1) + ev))
-            ns[#ns+1] = string.char((sv:sub(s,s):byte() >> 1) + ev)
+            ns[#ns+1] = string.char((sv:sub(s,s):byte()-ev)
         end
-        return table.concat(ns)
+        return table.concat(ns,".")
     end
 
     --Loading/Creating Cache
