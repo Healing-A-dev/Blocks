@@ -164,10 +164,10 @@ local function loadCache(block_file_name)
         local f = io.open(cachefile,'r')
         local lines = f:lines()
         for line in lines do
-            if line:find("0#[^%:]+%=") then
+            if line:find("0#") then
                 print("AHHHH")
-                local name = line:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
-                line = "startBlock "..name..":"
+                --local name = line:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
+                --line = "startBlock "..name..":"
             end
             --print(ds(line:gsub("^%s+","")))
         end
