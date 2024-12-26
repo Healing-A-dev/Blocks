@@ -159,7 +159,9 @@ local function loadCache(block_file_name)
         end
         return ns
     end
-    
+    if block_file_name == nil then
+        print("Blocks: No block specified to run\n\027[91mTerminating Process\027[0m)
+    end
     local cache = readCache()
     if cache[block_file_name] then
         local file = io.open(cachefile, 'r')
