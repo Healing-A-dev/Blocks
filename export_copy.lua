@@ -414,6 +414,7 @@ available operations:
         getConfig()
         print("Version: \027[95m"..__VERSION.."\027[0m")
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
+        getConfig()
         loadCache()
         Blocks[block_name].run(run_commands)
     else
