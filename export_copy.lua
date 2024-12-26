@@ -180,7 +180,7 @@ local function loadCache(block_file_name)
         file:close()
 
         --Editing File
-        file = io.open(cachefile, 'w+')
+        local file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.ds) do
             if i:find("0%#[^%:]+%=") then
                 local name = i:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
@@ -194,7 +194,7 @@ local function loadCache(block_file_name)
         Blocks.BuildFromFile(cachefile,"",true)
 
         --Resetting File
-        file = io.open(cachefile, 'w+')
+        local file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.es) do
             print(i)
             file:write(i.."\n")
