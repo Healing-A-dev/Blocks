@@ -114,7 +114,7 @@ local function cache(blockName)
         for s = 1, #sv do
             ns[#ns+1] = string.char((sv:sub(s,s):byte()-ev))
         end
-        return table.concat(ns,".")
+        return table.concat(ns)
     end
 
     --Loading/Creating Cache
