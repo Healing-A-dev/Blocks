@@ -138,7 +138,7 @@ local function Build(file)
             Name["Date"] = tostring(os.date("%B %d, %Y | %I:%M %p"))
             if Name["Name"] == nil then Name["Name"] = Name["Name*"] else Name["Name"] = Name["Name"]:gsub("%/","") end
             Blocks[name].run = function(run_commands)
-                if run_commands ~= nil then local Blocks = holdBlocks end
+                if holdBlocks ~= nil then Blocks = holdBlocks end
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
                     local splolitStr = {}
