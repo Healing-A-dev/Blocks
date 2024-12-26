@@ -436,11 +436,11 @@ available operations:
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
         loadCache(arg[2])
-        --Debugging:
+        --[[Debugging:
             print(arg[2],#arg[2])
             Blocks.ShowAllBlocks()
-        --Debugging
-        --Blocks[arg[2]].contents()
+        --Debugging]]
+        Blocks[arg[2]].contents()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
