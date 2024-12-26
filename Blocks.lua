@@ -137,7 +137,7 @@ local function Build(file)
             end
             Name["Date"] = tostring(os.date("%B %d, %Y | %I:%M %p"))
             if Name["Name"] == nil then Name["Name"] = Name["Name*"] else Name["Name"] = Name["Name"]:gsub("%/","") end
-            Blocks[name].run = function()
+            Blocks[name].run = function(run_commands)
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
                     local splolitStr = {}
@@ -153,7 +153,11 @@ local function Build(file)
                 local File = io.open(FileName,"w+")
                 File:write(table.concat(toRun))
                 File:close()
-                dofile(FileName)
+                if run_commands == nil then
+                    dofile(FileName)
+                else
+                    os.execute(run_commands.." "..FileName)
+                end
                 local File = io.open(FileName,"w+")
                 File:write(table.concat(fileStore,"\n"))
                 File:close()
