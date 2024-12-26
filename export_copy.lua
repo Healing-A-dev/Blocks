@@ -187,7 +187,7 @@ local function loadCache(block_file_name)
                 local name = i:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
                 i = "startBlock "..name..":"
             end
-            file:write(i)
+            file:write(i.."\n")
         end
         file:close()
         
@@ -197,7 +197,7 @@ local function loadCache(block_file_name)
         --Resetting File
         file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.es) do
-            file:write(i)
+            file:write(i.."\n")
         end
         file:close()
     else
