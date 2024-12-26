@@ -175,6 +175,10 @@ local function loadCache(block_file_name)
         end
         file:close()
         Blocks.BuildFromFile(cachefile,"",cmdL)
+        file = io.open(cachefile, 'w+')
+        for _,i in pairs(file_store.es) do
+            file:write(i)
+        end
     end
 end
 
