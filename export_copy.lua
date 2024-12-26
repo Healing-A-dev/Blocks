@@ -157,13 +157,13 @@ local function loadCache(block_file_name)
         for s = 1, #sv do
             ns[#ns+1] = string.char((sv:sub(s,s):byte()+dv))
         end
-        return ns
+        return table.concat(ns)
     end
     --Debugging:
         local f = io.open(cachefile,'r')
         local lines = f:lines()
         for line in lines do
-            print(table.concat(ds(line)))
+            print(ds(line))
         end
         f:close()
         os.exit()
