@@ -141,7 +141,7 @@ local function Build(file)
                 if holdBlocks ~= nil then Blocks = holdBlocks end
                 local toRun = {}
                 for _,i in ipairs(Blocks[name]) do
-                    local splolitStr = {}
+                    local splitStr = {}
                     for s = 1, #i do
                         splitStr[#splitStr+1] = i:sub(s,s)
                     end
