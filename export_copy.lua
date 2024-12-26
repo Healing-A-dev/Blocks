@@ -186,6 +186,8 @@ local function loadCache(block_file_name)
         for _,i in pairs(file_store.es) do
             file:write(i)
         end
+    else
+        print("Blocks: block '"..block_file_name.."' was not found in the cache")
     end
 end
 
@@ -419,8 +421,8 @@ available operations:
         print("Version: \027[95m"..__VERSION.."\027[0m")
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
-        loadCache()
-        Blocks[block_name].run(run_commands)
+        loadCache(arg[2])
+        Blocks[block_name].run(arg[3])
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
