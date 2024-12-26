@@ -89,7 +89,7 @@ local function readCache()
         local name = line:match("-%s?[^%.]+")
         if name ~= nil then
             name = name:gsub("^%s+%-%s",""):gsub("%:$","")
-            print(name)
+            print(ds(name))
             cachedfiles[ds(name)] = true
         end
     end
