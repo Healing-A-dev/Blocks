@@ -130,7 +130,7 @@ local function cache(blockName)
         local lineStore = holdBlocks[blockName].contents("*l")
         file:write("\n- "..es(blockName)..":\n")
         for _,i in pairs(lineStore) do
-            file:write("    "..es(i).."\n")
+            file:write("    "..es(i).."\n"..es("endBlock").."\n")
         end
     end
     file:close()
@@ -190,6 +190,10 @@ local function loadCache(block_file_name)
         --Editing File
         file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.ds) do
+            if i:find("0%#.+%=") then
+                local name = i:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
+                i = "startBlock "..name..":"
+            end
             file:write(i)
         end
         file:close()
