@@ -88,7 +88,6 @@ end
 local function Build(file)
     local FileName = file
     local File = io.open(FileName,"r")
-    print(file, File)
     local lines = File:lines()
     local filelines = {}
     local fileStore = {}
