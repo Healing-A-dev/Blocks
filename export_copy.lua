@@ -163,7 +163,7 @@ local function loadCache(block_file_name)
         local f = io.open(cachefile,'r')
         local lines = f:lines()
         for line in lines do
-            print(ds(line:gsub("^%s+",""))
+            print(ds(line:gsub("^%s+","")))
         end
         f:close()
         os.exit()
