@@ -187,7 +187,8 @@ local function loadCache(block_file_name)
             file:write(i)
         end
     else
-        print("Blocks: block '"..block_file_name.."' was not found in the cache")
+        print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
+        os.exit()
     end
 end
 
