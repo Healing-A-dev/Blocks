@@ -160,20 +160,6 @@ local function loadCache(block_file_name)
         end
         return table.concat(ns)
     end
-    --Debugging:
-        local f = io.open(cachefile,'r')
-        local lines = f:lines()
-        for line in lines do
-            local line = ds(line:gsub("^%s+",""))
-            if line:find("0%#[^%:]+%=") then
-                local name = line:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
-                line = "startBlock "..name..":"
-            end
-            print(line)
-        end
-        f:close()
-        os.exit()
-    --Debugging
     
     if block_file_name == nil then
         print("Blocks: No block specified to run\n\027[91mTerminating Process\027[0m")
@@ -196,7 +182,7 @@ local function loadCache(block_file_name)
         --Editing File
         file = io.open(cachefile, 'w+')
         for _,i in pairs(file_store.ds) do
-            if i:find("0%#.+%=") then
+            if i:find("0%#[^%:]+%=") then
                 local name = i:match("0%#.+%="):gsub("^0%#",""):gsub("%=$","")
                 i = "startBlock "..name..":"
             end
