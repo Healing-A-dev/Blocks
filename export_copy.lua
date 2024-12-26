@@ -175,7 +175,7 @@ local function loadCache(block_file_name)
         local lines = file:lines()
         for line in lines do
             file_store.es[#file_store.es+1] = line
-            file_store.ds[#file_store.ds+1] = ds(line)
+            file_store.ds[#file_store.ds+1] = ds(line:gsub("^%s+",""))
         end
         file:close()
 
