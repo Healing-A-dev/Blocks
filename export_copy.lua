@@ -440,7 +440,13 @@ available operations:
             print(arg[2],#arg[2])
             Blocks.ShowAllBlocks()
         --Debugging]]
-        Blocks[arg[2]].contents()
+        for _,i in pairs(Blocks) do
+            if type(i) == 'table' then
+                holdBlocks[_] = i
+                Blocks[_] = nil
+            end
+        end
+        holdBlocks[arg[2]].contents()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
