@@ -166,9 +166,9 @@ local function loadCache(block_file_name)
         os.exit()
     end
     local Cache = readCache()
-    if Cache[block_file_name] then
+    if Cache[block_file_name] or block_file_name == false then
         local file = io.open(cachefile, 'r')
-        if file == nil and blocks_file_name ~= false then
+        if file == nil then
             print("Blocks: No cache file '.blocks/cache/cachefiles.bfcache' was found\n\027[91mTerminating Process\027[0m")
             os.exit()
         end
@@ -192,7 +192,7 @@ local function loadCache(block_file_name)
         
         --Building Blocks
         Blocks.BuildFromFile(cachefile,"",true)
-    elseif Cache[block_file_name] == nil and block_file_name ~= false then
+    else
         print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
         os.exit()
     end
