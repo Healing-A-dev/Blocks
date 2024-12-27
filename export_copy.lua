@@ -439,7 +439,7 @@ available operations:
         end
         holdBlocks[arg[2]].run(arg[3])
 
-        --Resetting Cache
+        -- Resetting Cache
         local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         for _,i in pairs(lines) do
             file:write(i.."\n")
@@ -448,10 +448,17 @@ available operations:
     elseif arg[1] == "-sc" or arg[1] == "--show_cache" then
         getConfig()
         local cache = loadCache(false).ds
+        local lines = loadCache(false).es
         for _,i in pairs(cache) do
             print(i)
         end
-        os.exit()
+
+        -- Resetting Cache
+        local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
+        for _,i in pairs(lines) do
+            file:write(i.."\n")
+        end
+        file:close()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
