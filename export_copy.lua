@@ -195,7 +195,7 @@ local function loadCache(block_file_name)
         
         --Resetting File
         local file = io.open(cachefile, "w+")
-        for _,i in pairs(file_store.es] do
+        for _,i in pairs(file_store.es) do
             file:write(i.."\n")
         end
         file:close()
