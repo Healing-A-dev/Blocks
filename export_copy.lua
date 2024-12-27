@@ -194,12 +194,13 @@ local function loadCache(block_file_name)
         Blocks.BuildFromFile(cachefile,"",true)
 
         --Resetting File
-        local file = io.open(cachefile, 'w+')
-        for _,i in pairs(file_store.es) do
-            print(i)
-            file:write(i.."\n")
-        end
+        file = io.open(cachefile, "w+")
         file:close()
+        for _,i in pairs(Blocks) do
+            if type(i) == "table" then
+                cache(i)
+            end
+        end
     else
         print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
         os.exit()
