@@ -165,8 +165,8 @@ local function loadCache(block_file_name)
         print("Blocks: No block specified to run\n\027[91mTerminating Process\027[0m")
         os.exit()
     end
-    local cache = readCache()
-    if cache[block_file_name] then
+    local Cache = readCache()
+    if Cache[block_file_name] then
         local file = io.open(cachefile, 'r')
         if file == nil then
             print("Blocks: No cache file '.blocks/cache/cachefiles.bfcache' was found\n\027[91mTerminating Process\027[0m")
