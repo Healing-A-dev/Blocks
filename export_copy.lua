@@ -168,7 +168,7 @@ local function loadCache(block_file_name)
     local Cache = readCache()
     if Cache[block_file_name] then
         local file = io.open(cachefile, 'r')
-        if file == nil then
+        if file == nil and blocks_file_name ~= false then
             print("Blocks: No cache file '.blocks/cache/cachefiles.bfcache' was found\n\027[91mTerminating Process\027[0m")
             os.exit()
         end
@@ -192,11 +192,11 @@ local function loadCache(block_file_name)
         
         --Building Blocks
         Blocks.BuildFromFile(cachefile,"",true)
-    else
+    elseif Cache[block_file_name] == nil and block_file_name ~= false then
         print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
         os.exit()
     end
-    return file_store.es
+    return {es = file_store.es, ds = file_store.ds}
 end
 
 --[[Block Export Function]]--
@@ -430,7 +430,7 @@ available operations:
         print("Version: \027[95m"..__VERSION.."\027[0m")
     elseif arg[1] == "-r" or arg[1] == "--run" then
         getConfig()
-        local lines = loadCache(arg[2])
+        local lines = loadCache(arg[2]).es
         for _,i in pairs(Blocks) do
             if type(i) == 'table' then
                 holdBlocks[_] = i
@@ -447,7 +447,7 @@ available operations:
         file:close()
     elseif arg[1] == "-sc" or arg[1] == "--show_cache" then
         getConfig()
-        local cache = readCache()
+        local cache = loadCache(false).ds
         for _,i in pairs(cache) do
             print(i)
         end
