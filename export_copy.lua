@@ -197,9 +197,9 @@ local function loadCache(block_file_name)
         file = io.open(cachefile, "w+")
         file:close()
         for _,i in pairs(Blocks) do
-            print(tostring(i))
+            print(tostring(_))
             if type(i) == "table" then
-                cache(i)
+                cache(_)
             end
         end
     else
