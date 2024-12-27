@@ -192,12 +192,17 @@ local function loadCache(block_file_name)
         
         --Building Blocks
         Blocks.BuildFromFile(cachefile,"",true)
+        for _,i in pairs(Blocks) do
+            if type(i) == 'table' then
+                holdBlocks[_] = i
+                Blocks[_] = nil
+            end
+        end
 
         --Resetting File
         file = io.open(cachefile, "w+")
         file:close()
         for _,i in pairs(Blocks) do
-            print(tostring(_))
             if type(i) == "table" then
                 cache(_)
             end
@@ -439,12 +444,6 @@ available operations:
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
         loadCache(arg[2])
-        for _,i in pairs(Blocks) do
-            if type(i) == 'table' then
-                holdBlocks[_] = i
-                Blocks[_] = nil
-            end
-        end
         holdBlocks[arg[2]].run(arg[3])
     else
         print("blocks: command '"..arg[1].."' was not found")
