@@ -192,17 +192,11 @@ local function loadCache(block_file_name)
         
         --Building Blocks
         Blocks.BuildFromFile(cachefile,"",true)
-        
-        --Resetting File
-        local file = io.open(cachefile, "w+")
-        for _,i in pairs(file_store.es) do
-            file:write(i.."\n")
-        end
-        file:close()
     else
         print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
         os.exit()
     end
+    return file_store.es
 end
 
 --[[Block Export Function]]--
@@ -435,8 +429,21 @@ available operations:
         print("Version: \027[95m"..__VERSION.."\027[0m")
     elseif arg[1] == "-r" or arg[1] == "--run_block" then
         getConfig()
-        loadCache(arg[2])
+        local lines = loadCache(arg[2])
+        for _,i in pairs(Blocks) do
+            if type(i) == 'table' then
+                holdBlocks[_] = i
+                Blocks[_] = nil
+            end
+        end
         holdBlocks[arg[2]].run(arg[3])
+
+        --Resetting Cache
+        local file = io.open(".blocks/cache/cachefiles.bfcache")
+        for _,i in pairs(lines) do
+            file:write(i.."\n")
+        end
+        file:close()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
