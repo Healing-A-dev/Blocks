@@ -439,7 +439,7 @@ available operations:
         holdBlocks[arg[2]].run(arg[3])
 
         --Resetting Cache
-        local file = io.open(".blocks/cache/cachefiles.bfcache")
+        local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         for _,i in pairs(lines) do
             file:write(i.."\n")
         end
