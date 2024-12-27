@@ -446,6 +446,7 @@ available operations:
         end
         file:close()
     elseif arg[1] == "-sc" or arg[1] == "--show_cache" then
+        getConfig()
         print(table.concat(readCache(),"\n"))
         os.exit()
     else
