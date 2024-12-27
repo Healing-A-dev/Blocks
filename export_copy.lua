@@ -447,7 +447,10 @@ available operations:
         file:close()
     elseif arg[1] == "-sc" or arg[1] == "--show_cache" then
         getConfig()
-        print(table.concat(readCache(),"\n"))
+        local cache = readCache()
+        for _,i in pairs(cache) do
+            print(i)
+        end
         os.exit()
     else
         print("blocks: command '"..arg[1].."' was not found")
