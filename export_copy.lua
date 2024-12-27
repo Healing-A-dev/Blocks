@@ -354,7 +354,8 @@ available operations:
     -a --advanced_export <File>:                            Advacent mode. Lets you choose where every block is placed and the file extension for each individual block (Work in Progess).
     -u --update:                                            Updates Blocks to the latest version.
     -v --version:                                           Displays the current version.
-    -r --run_block <Block_Name> <Commands_To_Run>:          Builds the specified block from cache (if available) and runs the block in the specified commands to run (ie. 'lua <Block_Name>, 'python3 <File_Name>, etc).
+    -r --run <Block_Name> <Commands_To_Run>:                Builds the specified block from cache (if available) and runs the block in the specified commands to run (ie. 'lua <Block_Name>, 'python3 <File_Name>, etc).
+    -sc --show_cache                                        Displays all the blocks stored in the cache file.
     -R --uninstall:                                         Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
@@ -427,7 +428,7 @@ available operations:
     elseif arg[1] == "-v" or arg[1] == "--version" then
         getConfig()
         print("Version: \027[95m"..__VERSION.."\027[0m")
-    elseif arg[1] == "-r" or arg[1] == "--run_block" then
+    elseif arg[1] == "-r" or arg[1] == "--run" then
         getConfig()
         local lines = loadCache(arg[2])
         for _,i in pairs(Blocks) do
@@ -444,6 +445,9 @@ available operations:
             file:write(i.."\n")
         end
         file:close()
+    elseif arg[1] == "-sc" or arg[1] == "--show_cache" then
+        print(table.concat(readCache(),"\n"))
+        os.exit()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
