@@ -217,6 +217,8 @@ local function Build(file)
                         Footer = __FOOTER
                     end
                 end
+                Header = load('return "'..Header..'"')()
+                Footer = load('return "'..Footer..'"')()
                 BlockFile:write(Header.."\n\n"..table.concat(toRun,"\n").."\n\n"..Footer)
                 BlockFile:close()
                 return path..name
