@@ -116,7 +116,7 @@ local function Build(file)
                 for s = 1, #line do
                     splitStr[#splitStr+1] = line:sub(s,s)
                 end
-                if splitStr[line:len()] ~= "," and splitStr[line:len()] ~= "{"then
+                if splitStr[line:len()] ~= "," and splitStr[line:len()] ~= "{" then
                     line = line..";"
                 end
                 filelines[#filelines+1] = line
