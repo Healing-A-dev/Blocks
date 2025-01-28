@@ -355,7 +355,8 @@ available operations:
     -u --update:                                            Updates Blocks to the latest version.
     -v --version:                                           Displays the current version.
     -r --run <Block_Name> <Commands_To_Run>:                Builds the specified block from cache (if available) and runs the block in the specified commands to run (ie. 'lua <Block_Name>, 'python3 <File_Name>, etc).
-    -sc --show_cache [W.I.P]                                Displays all the blocks stored in the cache file.
+    -sc --show_cache                                        Displays all the blocks stored in the cache file.
+    -cc --clear_cache                                       Clears the cahce.
     -R --uninstall:                                         Uninstall Blocks and remove all saved blocks.]])
         os.exit()
     elseif arg[1] == "--update" or arg[1] == "-u" then
@@ -452,6 +453,9 @@ available operations:
         for _,i in pairs(cache) do
             print("\tBlock: ".._)
         end
+    elseif arg[1] == "-cc" or arg[1] == "--clear_cache" then
+        local file = io.open(".blocks/cahce/cachefiles.bfcache","w+")
+        file:close()
     else
         print("blocks: command '"..arg[1].."' was not found")
     end
