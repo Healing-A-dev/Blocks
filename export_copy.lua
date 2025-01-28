@@ -377,7 +377,7 @@ available operations:
             print("!Skipping. No configurations found!")
         end
         file:close()
-        print("\027[1m**Update Completed**\027[0m")
+        print("\027[1m**Update Complete**\027[0m")
         os.exit()
     elseif arg[1] == "-R" or arg[1] == "--uninstall" then
         io.write("Are you sure you want to uninstall Blocks? [Y/n]: ")
