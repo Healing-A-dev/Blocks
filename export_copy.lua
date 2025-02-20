@@ -454,7 +454,7 @@ available operations:
             print("\tBlock: ".._)
         end
     elseif arg[1] == "-cc" or arg[1] == "--clear_cache" then
-        local file = io.open(".blocks/cahce/cachefiles.bfcache","w+")
+        local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         file:close()
     else
         print("blocks: command '"..arg[1].."' was not found")
