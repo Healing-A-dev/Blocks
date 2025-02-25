@@ -431,7 +431,7 @@ available operations:
         print("Version: \027[95m"..__VERSION.."\027[0m")
     elseif arg[1] == "-r" or arg[1] == "--run" then
         getConfig()
-        local lines = loadCache(arg[2]).es
+        local lines = loadCache(arg[2]).ds
         for _,i in pairs(Blocks) do
             if type(i) == 'table' then
                 holdBlocks[_] = i
