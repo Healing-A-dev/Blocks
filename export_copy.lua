@@ -440,7 +440,11 @@ available operations:
         end
         print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
         --holdBlocks[arg[2]].run(arg[3])
-        print("BROKEN AT THE MOMENT")
+        print("BROKEN AT THE MOMENT; Dumping Cache for debugging")
+        os.execute('sleep 1')
+        for _,i in pairs(lines) do
+            print(tostring(_),tostring(i))
+        end
         -- Resetting Cache
         local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         for _,i in pairs(lines) do
