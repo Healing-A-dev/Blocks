@@ -56,10 +56,10 @@ local function updateCache()
 end
 
 --Cache Dump
-local function dumpCache()
+local function dumpCache(cache)
     print("BROKEN AT THE MOMENT; Dumping Cache for debugging")
     os.execute('sleep 1')
-    for _,i in pairs(lines) do
+    for _,i in pairs(cache) do
         print(tostring(_),tostring(i))
     end
 end
@@ -449,7 +449,7 @@ available operations:
         end
         print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
         if holdBlocks[arg[2]] == nil then
-            dumpCache()
+            dumpCache(lines)
         else
             holdBlocks[arg[2]].run(arg[3])
         end
