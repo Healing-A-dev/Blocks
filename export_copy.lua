@@ -451,7 +451,8 @@ available operations:
         if holdBlocks[arg[2]] == nil then
             dumpCache()
         else
-        holdBlocks[arg[2]].run(arg[3])
+            holdBlocks[arg[2]].run(arg[3])
+        end
         -- Resetting Cache
         local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         for _,i in pairs(lines) do
