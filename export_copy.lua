@@ -55,6 +55,15 @@ local function updateCache()
     
 end
 
+--Cache Dump
+local function dumpCache()
+    print("BROKEN AT THE MOMENT; Dumping Cache for debugging")
+    os.execute('sleep 1')
+    for _,i in pairs(lines) do
+        print(tostring(_),tostring(i))
+    end
+end
+
 --Cache Reader
 local function readCache()
     local cachefile = ".blocks/cache/cachefiles.bfcache"
@@ -439,12 +448,7 @@ available operations:
             end
         end
         print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
-        --holdBlocks[arg[2]].run(arg[3])
-        print("BROKEN AT THE MOMENT; Dumping Cache for debugging")
-        os.execute('sleep 1')
-        for _,i in pairs(lines) do
-            print(tostring(_),tostring(i))
-        end
+        assert(holdBlocks[arg[2]].run(arg[3]),dumpCache())
         -- Resetting Cache
         local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         for _,i in pairs(lines) do
