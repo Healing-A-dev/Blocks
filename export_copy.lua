@@ -438,6 +438,7 @@ available operations:
                 Blocks[_] = nil
             end
         end
+        print(arg[2], arg[3], holdBlocks, #holdBlocks)
         holdBlocks[arg[2]].run(arg[3])
 
         -- Resetting Cache
