@@ -448,7 +448,10 @@ available operations:
             end
         end
         print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
-        assert(holdBlocks[arg[2]].run(arg[3]),dumpCache())
+        if holdBlocks[arg[2]] == nil then
+            dumpCache()
+        else
+        holdBlocks[arg[2]].run(arg[3])
         -- Resetting Cache
         local file = io.open(".blocks/cache/cachefiles.bfcache","w+")
         for _,i in pairs(lines) do
