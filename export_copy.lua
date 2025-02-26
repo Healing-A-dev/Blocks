@@ -63,10 +63,11 @@ local function dumpCache(cache)
         print(tostring(_),tostring(i))
     end
     print("-------------------------------------------------\nDumping Blocks table:")
+    os.execute('sleep 1')
     for _,i in pairs(holdBlocks) do
         print(tostring(_),tostring(i))
     end
-    
+    print(holdBlocks[arg[2]],holdBlocks[tostring(arg[2])])
 end
 
 --Cache Reader
