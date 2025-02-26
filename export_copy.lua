@@ -192,6 +192,7 @@ local function loadCache(block_file_name)
             file_store.es[#file_store.es+1] = line
             file_store.ds[#file_store.ds+1] = ds(line:gsub("^%s+",""))
             if __DEBUG then
+                print("DEBUGGING: ")
                 print(ds(line:gsub("^%s+","")))
             end
         end
@@ -457,7 +458,7 @@ available operations:
             end
         end
         if holdBlocks[arg[2]] == nil then
-            if __DEBUG == true then
+            if __DEBUG then
                 print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
                 dumpCache(lines)
             else
