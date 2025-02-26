@@ -456,9 +456,13 @@ available operations:
                 Blocks[_] = nil
             end
         end
-        if holdBlocks[arg[2]] == nil and __DEBUG == true then
-            print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
-            dumpCache(lines)
+        if holdBlocks[arg[2]] == nil then
+            if __DEBUG == true then
+                print(arg[2], arg[3], holdBlocks, #holdBlocks, holdBlocks[arg[2]])
+                dumpCache(lines)
+            else
+                print("BROKEN: CURRENTLY FIXING")
+            end
         else
             holdBlocks[arg[2]].run(arg[3])
         end
