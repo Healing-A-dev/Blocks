@@ -218,6 +218,9 @@ local function loadCache(block_file_name)
         
         --Building Blocks
         Blocks.BuildFromFile(cachefile,"",true)
+        if __BDEBUG then
+            Blocks.ShowAllBlocks()
+        end
     else
         print("Blocks: block '"..block_file_name.."' was not found in the cache\n\027[91mTerminating Process\027[0m")
         os.exit()
