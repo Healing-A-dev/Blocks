@@ -188,12 +188,17 @@ local function loadCache(block_file_name)
             os.exit()
         end
         local lines = file:lines()
+        local debug = 0
         for line in lines do
             file_store.es[#file_store.es+1] = line
             file_store.ds[#file_store.ds+1] = ds(line:gsub("^%s+",""))
             if __DEBUG then
-                print("DEBUGGING: ")
+                if debug == 0 then
+                    print("DEBUGGING: ")
+                    debug = debug + 1
+                end
                 print(ds(line:gsub("^%s+","")))
+                print("Name: "..ds(line:gsub("^%s+","")):match("0%#.+%="):gsub("^0%#",""):gsub("%=$",""))
             end
         end
         file:close()
