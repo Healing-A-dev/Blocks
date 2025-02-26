@@ -62,6 +62,11 @@ local function dumpCache(cache)
     for _,i in pairs(cache) do
         print(tostring(_),tostring(i))
     end
+    print("-------------------------------------------------\nDumping Blocks table:")
+    for _,i in pairs(holdBlocks) do
+        print(tostring(_),tostring(i))
+    end
+    
 end
 
 --Cache Reader
