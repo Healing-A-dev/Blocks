@@ -103,7 +103,7 @@ local function readCache()
     for line in lines do
         local name = line:match("-%s?[^%.]+")
         if name ~= nil then
-            name = name:gsub("^%s+%-%s",""):gsub("%:$","")
+            name = name:gsub("^(%s+%-%s)",""):gsub("%:$","")
             if __DEBUG then
                 print("DUMPING DECRYPTED VALUES:")
                 print(ds(name))
