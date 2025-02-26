@@ -192,7 +192,7 @@ local function loadCache(block_file_name)
             file_store.es[#file_store.es+1] = line
             file_store.ds[#file_store.ds+1] = ds(line:gsub("^%s+",""))
             if __DEBUG then
-                print(ds(line:gsub("^%s+",""))
+                print(ds(line:gsub("^%s+","")))
             end
         end
         file:close()
