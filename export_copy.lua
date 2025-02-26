@@ -463,6 +463,9 @@ available operations:
         local lines = loadCache(arg[2]).ds
         for _,i in pairs(Blocks) do
             if type(i) == 'table' then
+                if __BDEBUG then
+                    print(_,i)
+                end
                 holdBlocks[_] = i
                 Blocks[_] = nil
             end
