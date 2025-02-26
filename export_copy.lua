@@ -198,7 +198,7 @@ local function loadCache(block_file_name)
                     debug = debug + 1
                 end
                 print(ds(line:gsub("^%s+","")))
-                print("Name: "..ds(line:gsub("^%s+","")):match("0%#.+%="):gsub("^0%#",""):gsub("%=$",""))
+                print("Name: "..ds(line:gsub("^%s+","")))
             end
         end
         file:close()
