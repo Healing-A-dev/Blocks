@@ -106,7 +106,7 @@ local function readCache()
             name = name:gsub("^%s+%-%s",""):gsub("%:$","")
             if __DEBUG then
                 print("DUMPING DECRYPTED VALUES:")
-                print(name)
+                print(ds(name))
                 os.execute('sleep 2')
             end
             cachedfiles[ds(name):gsub("^0%#","")] = true
